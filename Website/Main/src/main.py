@@ -73,25 +73,6 @@ def gyldig_epost(epost):
         return 'error ugyldig e-post'
 
 
-from src import jokes
-
-
-@app.route('/joke/random')
-def joke_random():
-    joke = jokes.get_random()
-    return flask.render_template('joke.html', joke=joke)
-
-@app.route('/joke/<search>')
-def joke_search(search):
-    joke = jokes.get_search(search)
-    return flask.render_template('joke.html', joke=joke)
-#how?
-@app.route('/joke/category/<category>')
-def joke_category(category):
-    joke = jokes.get_category(catagory)
-    return flask.render_template('joke.html', joke=joke)
-
-
 app.debug = True
 
 app.run()
