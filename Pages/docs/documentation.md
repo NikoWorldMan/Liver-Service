@@ -3,7 +3,7 @@
 ```python
 print("Hello world!")
 ```
-Slik installerer du ;)
+Slik installerer du
 ```shell
 pip install -r requirements.text
 ```
