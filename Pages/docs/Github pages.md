@@ -1,8 +1,9 @@
-# Documentation
-
+# The github pages setup
+Placeholder
 ```python
 print("Hello world!")
 ```
+
 Slik installerer du
 ```shell
 pip install -r requirements.text
@@ -22,7 +23,10 @@ python -m mkdocs serve
 
 #Add on to mkdocs serve: --dev-addr=0.0.0.0:8000
 #insert own value on where and what port to host it on.
+```
 
+On github
+```markdown
 #Adding gh-pages to github
 #The .github file that has the workflows and ci.yml file needs to be first and on top of the other files.
 

@@ -1,13 +1,8 @@
 # Welcome to the Homepage
-___
-##Steam scraping
 
-Velkommen til min **dokumentasjon.**
-
+##**Liver-Service.**
+Local Nerds attempt to communicate.
  ___
 
-the logg.
-```markdown
-22.11.23
-The website is now made look you can read important stuff yay.
-```
+#Battlefield: Chronicles of the Fighter Party
+
