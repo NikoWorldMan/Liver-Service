@@ -6,11 +6,18 @@ import entity
 from entity import Stats
 import copy
 
+
+class ItemTypes:
+    CONSUMABLE = 'Consumable'
+    ITEM = 'Item'
+    COMBAT = 'Combat'
+
 class Items:
-    def __init__(self, name, count) -> None:
+    def __init__(self, name, count, type: ItemTypes) -> None:
 
         self.name = str(name)
         self.count = count
+        self.type = type
 
     def clone(self):
         return copy.deepcopy(self)

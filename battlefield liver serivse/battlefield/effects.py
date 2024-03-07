@@ -7,7 +7,8 @@
 The "DOT" Deals damage every time it is triggered, usually at the end of a turn
 The "STAT" Increases or decreases stat(s)
 The "HIT" Triggers its effect when the target is hit
-The ""
+The "ACT" Is always active and provides a passive effect
+The
 """
 
 from entity import Stats
