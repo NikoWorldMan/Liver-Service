@@ -1,0 +1,17 @@
+{% extends "_layout.html" %}
+
+{% block content %}
+
+    <form id="Login-form" action="/auth">
+
+        <label for="username">Brukernavn</label>
+        <input type="text" name="username" id="username" placeholder="Skriv inn ditt brukernavn...">
+
+        <label for="password">passord</label>
+        <input type="password" name="password" id="password" placeholder="Skriv inn ditt passord...">
+
+        <button type="submit">Logg inn</button>
+
+    </form>
+
+{% endblock %}
