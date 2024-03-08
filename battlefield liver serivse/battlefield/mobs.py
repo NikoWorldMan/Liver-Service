@@ -3,17 +3,18 @@
 #
 #
 
-import entity
+from entity import Entity
 from entity import Stats
 import random
 
-class mob(entity.Entity):
+class mob(Entity):
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
         self.loot = []
 
     def attack_options(self, team):
         return super().attack_options(team)
+
 
 
 class Creeper(mob):
@@ -23,7 +24,7 @@ class Creeper(mob):
 
     def attack_options(self, team):
         self.stats[Stats.FUSE] -=1
-        
+
         if self.stats[Stats.FUSE] > 0:
             print(self.name,"Will explode in",self.stats[Stats.FUSE],"Turns!\n")
             self.attack(random.choice(team), 0.75, 0)

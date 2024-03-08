@@ -7,15 +7,15 @@ import time
 import random
 import effects
 import entity
-import item
-import biomes
+import item as items
+
 from entity import Stats
 
 class Player(entity.Entity):   
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax, biome: biomes):
+    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
-        self.biome = biome
+        self.biome = None
 
         self.stats[Stats.MANA] = mana
         self.set_stats()
@@ -25,14 +25,58 @@ class Player(entity.Entity):
         self.xpmax = xpmax
 
         self.inv = []
-        self.consumable_inv = []
-        self.weapon_inv = []
 
         self.inv_space = inv_space
         self.weapon_space = weapon_space
         self.currency = currency
 
-    def attack_options(self, team):
+    def level_up(self, rolls):
+        print("you leveled up!")
+
+    def gain_xp(self, amount):
+        self.xp += amount
+        while self.xp >= self.xpmax:
+            self.xp -= self.xpmax
+            self.xpmax += self.xpmax/10 + 40
+
+            self.level_up(5)
+
+
+
+
+
+    def action_loop(self):
+        print()
+        print(f'Select one of the following actions:\nShop: (S) | Fight: (F) | Dungeon: (D) | Inventory: (I) | Armory: (A) ')
+        user_input = input('What would you like to do now? ').lower()
+
+        if user_input == 'i':
+
+            num = 0
+            count = []
+            for item in self.inv:
+
+                if item.type == items.ItemTypes.ITEM:
+                    num += 1
+                    count.append(str(num))
+
+
+
+
+        elif user_input == 'f':
+            print("fight")
+
+        elif user_input == 's':
+            print("shop")
+
+        elif user_input == 'a':
+            print("armory")
+
+        elif user_input == 'd':
+            print("dungeon")
+
+
+    def combat_loop(self, team):
 
         userInput = ""
         while userInput!="f":
@@ -78,7 +122,7 @@ class Player(entity.Entity):
                 print("you are now at",self.health,"health\n")
                 return
     
-    def list_inventory(self, inv):
+    def list_inventory(self, inv, can_use):
         count = 0
         for item in inv:
             count +=1
@@ -92,10 +136,10 @@ class Player(entity.Entity):
         else:
             inv.append(item)
 
-    def initiate_battle(self):
+    def initiate_battle(self, allies, opponents):
         pass
 
-    def shop(self):
+    def shop(self, shop):
         pass
 
     def options_loop(self):
@@ -116,11 +160,15 @@ class Magic(Player):
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
+        self.stats[Stats.MANA] = mana
+
 class Mage(Magic):
+    type = 'Mage'
     desc = "Has access to powerful spells, but has slow speed"
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 class Necromancer(Magic):
+    type = 'Necromancer'
     desc = "Summons minions to aid in battles"
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
@@ -133,5 +181,4 @@ class Warrior(Player):
     desc = "High survivalility class with AoE attacks"
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)    
-
 
