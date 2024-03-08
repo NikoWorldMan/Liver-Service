@@ -18,6 +18,13 @@ def join():
     accounts.append(new_account)
     return new_account.print_info()
 
+@app.route('/main-test')
+def main_test():
+
+    return render_template('main.html')
+
+
+
 @app.route('/')
 def base():
     return render_template('text.html', text_box = texty)
