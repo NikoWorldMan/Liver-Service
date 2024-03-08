@@ -6,7 +6,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-texty = ['','','','','','','','','','']
+texty = []
 random_text = ['no way', 'thats fine', 'right', 'cool text']
 accounts = []
 
