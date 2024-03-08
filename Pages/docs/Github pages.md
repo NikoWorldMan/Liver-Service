@@ -1,8 +1,4 @@
 # The github pages setup
-Placeholder
-```python
-print("Hello world!")
-```
 
 Slik installerer du
 ```shell
