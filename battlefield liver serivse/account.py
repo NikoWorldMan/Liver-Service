@@ -10,11 +10,9 @@ import random
 
 class Global:
     uid = -1
-
     def assign_uid():
         Global.uid += 1
         return Global.uid
-
 
 
 class Account:

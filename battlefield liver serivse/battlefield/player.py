@@ -5,7 +5,7 @@
 #
 import time
 import random
-import effects
+#import effects
 import entity
 import item as items
 
@@ -52,14 +52,26 @@ class Player(entity.Entity):
 
         if user_input == 'i':
 
-            num = 0
-            count = []
-            for item in self.inv:
 
-                if item.type == items.ItemTypes.ITEM:
-                    num += 1
-                    count.append(str(num))
+            for types in items.ItemTypes:
+                num = 0
+                count = []
+                print(f'\n{types}:')
 
+                for item in self.inv:
+                    if item.type == items.ItemTypes.ITEM:
+                        count += 1
+                        num.append(str(count))
+
+                    if item.type == items.ItemTypes.CONSUMABLE:
+                        count += 1
+                        num.append(str(count))
+
+            print(f'')
+            user_input = input(f'What item would you like to use?\n\n= ')
+
+            if str(user_input) in num:
+                num[user_input].
 
 
 
@@ -75,8 +87,7 @@ class Player(entity.Entity):
         elif user_input == 'd':
             print("dungeon")
 
-
-    def combat_loop(self, team):
+    def attack_options(self, team):
 
         userInput = ""
         while userInput!="f":
@@ -174,11 +185,14 @@ class Necromancer(Magic):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
         
 class Hunter(Player):
+    type = 'Hunter'
     desc = "Can deal high single target damage, and has high speed"
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 class Warrior(Player):
+    type = 'Warrior'
     desc = "High survivalility class with AoE attacks"
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)    
 
+classes = [Mage, Necromancer, Hunter, Warrior]

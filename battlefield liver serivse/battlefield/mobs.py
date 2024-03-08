@@ -32,3 +32,22 @@ class Creeper(mob):
             print(self.name,"Exploded!")
             for entity in team:
                 self.attack(entity, 2, 0)
+
+class Zombie(mob):
+    def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
+        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
+
+    def attack_options(self, team):
+        
+        if random.randrange(0,2) > 0:
+            self.attack(random.choice(team), 1.5, 0)
+        else:
+            self.attack(random.choice(team), 1.5, 0)
+
+class Wizard(mob):
+    def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
+        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
+
+    def attack_options(self, team):
+
+            self.attack(random.choice(team), 1, 0),

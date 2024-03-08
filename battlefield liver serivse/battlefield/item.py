@@ -40,8 +40,8 @@ class Items:
         user.set_stats()
 
 class HealthPotion(Items):
-    def __init__(self, name, count, heal_amount, maxhealth_mult) -> None:
-        super().__init__(name, count)
+    def __init__(self, name, count, heal_amount, maxhealth_mult, type: ItemTypes) -> None:
+        super().__init__(name, count, type)
 
         self.healing = heal_amount
         self.maxhealth_mult = maxhealth_mult
@@ -52,8 +52,9 @@ class HealthPotion(Items):
         heal = self.healing + self.maxhealth_mult * user.stat[Stats.HEALTH]
         user.change_health(heal)
         print(f"{user.name} used {self.name} and healed {heal} health!")
-
-the_item = HealthPotion("Great omegus healus", 1, 1000, 0.4)
+"""
+the_item = HealthPotion("Great omegus healus", 1, 1000, 0.4, [ItemTypes.CONSUMABLE] )
 
 print(the_item.display())
-
+print(the_item.type)
+"""
