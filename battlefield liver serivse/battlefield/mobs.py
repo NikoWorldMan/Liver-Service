@@ -10,7 +10,11 @@ import random
 class mob(Entity):
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
+
+
+        self.maxlv = 100
         self.loot = []
+
 
     def attack_options(self, team):
         return super().attack_options(team)

@@ -15,6 +15,9 @@ class Player(entity.Entity):
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
+        self.weapon = None
+
+        self.maxlv = 80
         self.biome = None
 
         self.stats[Stats.MANA] = mana
@@ -71,7 +74,7 @@ class Player(entity.Entity):
             user_input = input(f'What item would you like to use?\n\n= ')
 
             if str(user_input) in num:
-                num[user_input].
+                num[user_input].use_item(self, self.inv)
 
 
 

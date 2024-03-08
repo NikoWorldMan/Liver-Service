@@ -19,7 +19,7 @@ class Stats:
 class Entity: # Default attributes all entities possess
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         
-
+        self.maxlv = 90
         self.name = str(name)
         self.level = level
         self.stats = dict()
