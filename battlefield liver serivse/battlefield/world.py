@@ -62,6 +62,7 @@ class World:
             self.turn_value = self.get_action_value(World.turn_cycle)
         self.display_health()
 
+
     def battle(team_1, team_2):
 
         print()
@@ -110,6 +111,9 @@ class World:
 
 
 creep = mobs.Creeper("Crepr", 18, 3000, 500, 400, 14, 0, 0, 4)
-the_player= player.Player("Sturl", 20, 5000, 200, 90, 1000, 9, 100, 400, 10, 10, 10, 0, 100, None)
 
-World.battle([the_player.clone()], [creep.clone(), creep.clone(), creep.clone()])
+zomb = mobs.Zombie("Zmbie", 17, 5000, 600, 400, 7, 60, 120)
+
+the_player= player.Player("Sturl", 20, 5000, 200, 90, 1000, 9, 100, 400, 10, 10, 10, 0, 100)
+
+World.battle([zomb.clone()], [creep.clone()])
