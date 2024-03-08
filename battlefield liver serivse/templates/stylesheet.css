@@ -19,9 +19,9 @@ color:rgb(73, 182, 182);
 }
 
 img{
-  width: 600px;
+  width: 402px;
   height: 250;
-  filter:hue-rotate(250)
+  position: relative;
 }
 
 .commands{
