@@ -1,3 +1,6 @@
+
+from battlefield.player import classes
+
 def action_loop():
     while True:
         print(f'\n')
@@ -19,7 +22,6 @@ def action_loop():
         elif user_input == 'd':
             print("dungeon")
 
-
 def lvl_up():
     stats = 1
     print("You Leveled up!")
@@ -30,4 +32,25 @@ def lvl_up():
     print()
     input(f'= ')
 
+def start_game():
 
+    classes = ['Mage', 'Ranger', 'Warrior']
+
+    print("Welcome to Fightcraft!")
+    name = input("Choose your name: ").upper()
+    print("Welcome!", name)
+    print()
+    print("Choose your class: ")
+
+
+    count = 0
+    num = []
+    for i in player.classes:
+        count +=1
+        num.append(str(count))
+
+        print(f'{count}. {i.type} - {i.desc}')
+
+    print("\n =")
+
+start_game()

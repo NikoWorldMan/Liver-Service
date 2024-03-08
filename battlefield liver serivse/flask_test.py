@@ -2,51 +2,40 @@
 import random
 import account
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
-text = ['','','','','']
 
+texty = ['','','','','','','','','','']
 random_text = ['no way', 'thats fine', 'right', 'cool text']
+accounts = []
 
-accounts = {}
 
-
-@app.route('/')
+@app.route('/ca')
 def join():
     
     new_account = account.Account(None)
-
     accounts.append(new_account)
-
     return new_account.print_info()
 
-@app.route('/l')
-def helo():
+@app.route('/')
+def base():
+    return render_template('text.html', text_box = texty)
+    
+@app.route('/', methods=['POST'])
+def base_post():
+    text = request.form['text']
+    new_text = text.upper()
 
-    new_text = random.choice(random_text)
-    text.append(new_text)
-    while len(text) > 5:
-        text.remove(text[0])
-    return text
+    #new_text = random.choice(random_text)
+    if len(new_text) > 0:
+        texty.append(new_text)
+        while len(texty) > 10:
+            texty.remove(texty[0])
 
-@app.route('/k')
-def main():
-    return render_template('text.html', text_box = text)
+    return render_template('text.html', text_box = texty)
 
-@app.route('/gg')
-def test():
-
-    return render_template('test.html')
-
-
-@app.route('/lll')
-def mm():
-
-    return render_template()
 
 if __name__=='__main__': 
-   app.run( debug=True )
-
-
-
+   app.debug = True
+   app.run()
