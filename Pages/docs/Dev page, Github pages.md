@@ -1,4 +1,4 @@
-# The github pages setup
+# Setup for github pages 
 
 Slik installerer du
 ```shell
