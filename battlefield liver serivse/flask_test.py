@@ -7,7 +7,9 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-texty = []
+class Glob:   
+    texty = []
+
 random_text = ['no way', 'thats fine', 'right', 'cool text']
 accounts = []
 
@@ -27,7 +29,7 @@ def main_test():
 
 @app.route('/')
 def base():
-    return render_template('text.html', text_box = texty)
+    return render_template('text.html', text_box = Glob.texty)
 
 @app.route('/', methods=['CHAT']) # Unfiltered chat
 def update_chat():
@@ -43,14 +45,19 @@ def update_chat():
 def base_post():
     text = request.form['text']
     new_text = text.upper()
+    prev_text = Glob.texty
 
-    #new_text = random.choice(random_text)
-    if len(new_text) > 0:
-        texty.append(new_text)
-        while len(texty) > 10:
-            texty.remove(texty[0])
+    if new_text == '/CLEAR':
+        prev_text = ['CLEARED ALL TEXT...']
+    else:
+        #new_text = random.choice(random_text)
+        if len(new_text) > 0:
+            prev_text.append(new_text)
+            while len(prev_text) > 10:
+                prev_text.remove(prev_text[0])
 
-    return render_template('text.html', text_box = texty)
+    Glob.texty = prev_text
+    return render_template('text.html', text_box = Glob.texty)
 
 
 if __name__=='__main__': 
