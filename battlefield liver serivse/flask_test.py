@@ -25,7 +25,6 @@ def main_test():
     return render_template('main.html')
 
 
-
 @app.route('/')
 def base():
     return render_template('text.html', text_box = texty)
@@ -37,14 +36,13 @@ def update_chat():
 
     Global.chat.append(text)
 
+    return render_template('text.html')
+
 
 @app.route('/', methods=['POST'])
 def base_post():
     text = request.form['text']
     new_text = text.upper()
-
-
-
 
     #new_text = random.choice(random_text)
     if len(new_text) > 0:
