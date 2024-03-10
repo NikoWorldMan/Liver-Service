@@ -18,6 +18,8 @@ h1{
 grid-column: 1/2;
 grid-row: 1;
 color:rgb(73, 182, 182);
+background-color: rgb(4, 4, 49);;
+
 }
 
 .wrapper {
