@@ -235,15 +235,15 @@ color: azure;
   font-size: small;
   max-height: 10px;
   margin-left: -30px;
-
+  margin-inline-end: 100px;
 }
 .forms{
-  margin-top: 850px;
-  margin-inline-end: 200%;
+  margin-top: 900px;
   position: absolute;
   top: 0;
   text-align: left;
   font-size: small;
+  margin-inline-end: 100px;
 }
 
 .commands{
