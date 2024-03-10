@@ -249,5 +249,5 @@ color: azure;
 .commands{
   grid-column:1/3;
   grid-row: 2/10;
-  color: rgb(73, 182, 182);
+  color: wheat;
 }
