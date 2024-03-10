@@ -64,7 +64,7 @@ def base_post():
         #new_text = random.choice(random_text)
         if len(new_text) > 0:
             prev_text.append(new_text)
-            while len(prev_text) > 10:
+            while len(prev_text) > 15:
                 prev_text.remove(prev_text[0])
 
     Glob.texty = prev_text

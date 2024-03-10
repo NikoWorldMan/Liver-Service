@@ -240,12 +240,13 @@ color: azure;
   margin-inline-end: 100px;
 }
 .forms{
-  margin-top: 900px;
+  margin-top: 666px;
   position: absolute;
   top: 0;
   text-align: left;
   font-size: small;
   margin-inline-end: 100px;
+  left: 15px;
 }
 
 .commands{
