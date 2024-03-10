@@ -12,6 +12,7 @@ class Global:
     chat = []
 
 
+
 class Account:
     def __init__(self, player) -> None:
 

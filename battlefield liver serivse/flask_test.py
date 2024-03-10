@@ -3,15 +3,26 @@ import random
 import account
 from account import Global
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
+app.secret_key = "Wu7&epk#@£@]9ee9009o340£$]}@}OI=)=!"
 
+
+
+test = {"test": "wow"}
 
 class Glob:   
     texty = []
 
 random_text = ['no way', 'thats fine', 'right', 'cool text']
 accounts = []
+
+
+
+@app.route('/uid/')
+def uid():
+    session["uid"] = Global.assign_uid()
+    redirect(url_for("base"))
 
 
 @app.route('/ca') # Currently test, supposed to create account
