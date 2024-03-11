@@ -243,8 +243,7 @@ color: azure;
       font-size: small;
     }
 
-    input{
-      height:50%;   
+    input{ 
       color: rgb(73, 182, 182);
       border: none;
       outline: none ;
