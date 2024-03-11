@@ -55,7 +55,7 @@ color: azure;
   
 .chatbox {
 grid-column: 3;
-grid-row: 5/10 ;
+grid-row: 5/9 ;
 border: rgb(73, 182, 182);
 border-style: double;
 color: azure;
