@@ -15,6 +15,8 @@ class Player(entity.Entity):
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
+        self.states = []
+        self.using_skill = None
         self.weapon = None
 
         self.maxlv = 80
@@ -176,9 +178,10 @@ class Magic(Player):
 
         self.stats[Stats.MANA] = mana
 
-class Mage(Magic):
-    type = 'Mage'
-    desc = "Has access to powerful spells, but has slow speed"
+class Templar(Magic):
+    type = 'Templar'
+    desc = 'Posesses powerful attacks and shielding abilities'
+
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 class Necromancer(Magic):
@@ -186,16 +189,16 @@ class Necromancer(Magic):
     desc = "Summons minions to aid in battles"
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
-        
-class Hunter(Player):
-    type = 'Hunter'
-    desc = "Can deal high single target damage, and has high speed"
-    def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
-class Warrior(Player):
-    type = 'Warrior'
-    desc = "High survivalility class with AoE attacks"
-    def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)    
+class Psion(Magic):
+    type = 'Psion'
+    desc = 'Has the power of mind control'
+    ability_info = 'Notable skills:\n- Life steal'
+    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
+        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
+class MaledictionMage:
+    type = 'Malediction Mage'
+    desc = "Has access to powerful spells, but has slow speed"
+    ability_info = 'Notable skills:\n- Apply debuffs to enemies'
 
-classes = [Mage, Necromancer, Hunter, Warrior]
+
+classes = [Mage, Necromancer]

@@ -2,8 +2,7 @@
 #
 #
 
-import entity
-from entity import Stats
+from battlefield.entity import Stats
 import copy
 
 

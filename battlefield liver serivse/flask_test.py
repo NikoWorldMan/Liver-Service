@@ -1,22 +1,22 @@
 
 import random
 import account
+from battlefield import iterate_game
 from account import Global
 
 from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 app.secret_key = "Wu7&epk#@£@]9ee9009o340£$]}@}OI=)=!"
 
-
+player = iterate_game.PlayerTest([iterate_game.Game.State.IDLE])
 
 test = {"test": "wow"}
 
 class Glob:   
     texty = []
 
-random_text = ['no way', 'thats fine', 'right', 'cool text']
-accounts = []
 
+accounts = []
 
 
 @app.route('/uid/')
@@ -58,14 +58,19 @@ def base_post():
     new_text = text.upper()
     prev_text = Glob.texty
 
+
     if new_text == '/CLEAR':
         prev_text = ['CLEARED ALL TEXT...']
-    else:
-        #new_text = random.choice(random_text)
-        if len(new_text) > 0:
-            prev_text.append(new_text)
-            while len(prev_text) > 15:
-                prev_text.remove(prev_text[0])
+    #new_text = random.choice(random_text)
+
+
+    game_output = iterate_game.Game.iterate(player, new_text)
+
+    for i in game_output:
+        prev_text.append(i)
+
+    while len(prev_text) > 15:
+        prev_text.remove(prev_text[0])
 
     Glob.texty = prev_text
     return render_template('text.html', text_box = Glob.texty)
