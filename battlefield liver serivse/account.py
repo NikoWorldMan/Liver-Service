@@ -2,17 +2,15 @@
 #   account class
 #   account.py
 #
-print()
-
-import time
-import copy
-import random
 
 class Global:
     uid = -1
     def assign_uid():
         Global.uid += 1
         return Global.uid
+    
+    chat = []
+
 
 
 class Account:
@@ -20,8 +18,9 @@ class Account:
 
         self.uid = Global.assign_uid()
         self.player = player
+        self.input = ''
 
     def print_info(self):
-        info_out = f"Username: {self.player}\nPassword: rg"
+        info_out = f"Username: {self.player}\nUID: {self.uid}"
 
         return info_out
