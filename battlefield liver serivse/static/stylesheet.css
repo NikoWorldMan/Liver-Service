@@ -235,7 +235,8 @@ color: azure;
 
     .forms{
       position: fixed;
-      margin-top: 850px;
+      margin-top: 666px;
+      left: -16px;
       margin-inline-end: 200%;
       position: absolute;
       top: 0;
