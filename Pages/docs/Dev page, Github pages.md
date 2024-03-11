@@ -1,6 +1,6 @@
 # Setup for github pages 
 
-Utviklings prosesen av Github pages 
+Utviklings prosesen av Github pages: Skriv ned informasjon om det vi har gjort. Skriv spørsmål til informasjonen jeg har. skriv ned informasjon basert på de spørsmåla. Still spørsmål til den nye informasjonen.
 
 # Dev stuff
 
