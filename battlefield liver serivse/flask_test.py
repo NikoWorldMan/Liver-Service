@@ -1,14 +1,16 @@
-
+import sqlite3
 import random
 import account
 from battlefield import iterate_game
 from account import Global
+from battlefield.player import Player
 
 from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 app.secret_key = "Wu7&epk#@£@]9ee9009o340£$]}@}OI=)=!"
 
-player = iterate_game.PlayerTest([iterate_game.Game.State.IDLE])
+player = Player('Magus Supremus', 4, 100, 100, 100, 100, 100, 5, 50, 5, 5, 10, 0, 100)
+player.states = [iterate_game.Game.State.IDLE]
 
 test = {"test": "wow"}
 
@@ -58,22 +60,22 @@ def base_post():
     new_text = text.upper()
     prev_text = Glob.texty
 
+    if len(new_text) > 0:
+        if new_text == '/CLEAR':
+            prev_text = ['CLEARED ALL TEXT...']
+        #new_text = random.choice(random_text)
 
-    if new_text == '/CLEAR':
-        prev_text = ['CLEARED ALL TEXT...']
-    #new_text = random.choice(random_text)
+        else:
+            game_output = iterate_game.Game.iterate(player, new_text)
 
+            for i in game_output:
+                prev_text.append(i)
 
-    game_output = iterate_game.Game.iterate(player, new_text)
+            while len(Glob.texty) > 15:
+                Glob.texty.remove(Glob.texty[0])
 
-    for i in game_output:
-        prev_text.append(i)
-
-    while len(prev_text) > 15:
-        prev_text.remove(prev_text[0])
-
-    Glob.texty = prev_text
-    return render_template('text.html', text_box = Glob.texty)
+        Glob.texty = prev_text
+        return render_template('text.html', text_box = Glob.texty)
 
 
 if __name__=='__main__': 

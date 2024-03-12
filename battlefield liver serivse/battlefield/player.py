@@ -6,10 +6,10 @@
 import time
 import random
 #import effects
-import entity
-import item as items
+import battlefield.entity as entity
+import battlefield.item as items
 
-from entity import Stats
+from battlefield.entity import Stats
 
 class Player(entity.Entity):   
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
@@ -201,4 +201,4 @@ class MaledictionMage:
     ability_info = 'Notable skills:\n- Apply debuffs to enemies'
 
 
-classes = [Mage, Necromancer]
+classes = [MaledictionMage, Necromancer, Psion, Templar]
