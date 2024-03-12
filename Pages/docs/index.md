@@ -1,6 +1,7 @@
 # Velkommen til Battlefields pages
 
-Har can do lese om de forskjellige om delene av prosjektet Battlefield
+Dette er pages siden til Battlefields
+Her kan du lese mer om de forskjellige delene av prosjektet Battlefield
 
 ## **Liver-Service.**
 Local Nerds attempt to communicate.
@@ -9,4 +10,3 @@ Local Nerds attempt to communicate.
 # **Battlefield: Chronicles of the Fighter Party**
 
 
-l

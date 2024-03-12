@@ -12,6 +12,7 @@
 
 
 //TODO: Skriv om, Hvordan ble spillet utviklet, Selve spill prosjektet.
+(Hele prosjektet sinn utvikling)
 
 ## **Battlefield kommunikasjon**
 

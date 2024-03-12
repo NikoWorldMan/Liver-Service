@@ -6,13 +6,15 @@
 
 
 
-//TODO: Hvordan samhandler/gjør brukeren ting på nettsiden, Hva kan brukeren gjøre på nettsiden.
+//TODO: Hvordan samhandler/gjør brukeren ting på nettsiden? Hva kan brukeren gjøre på nettsiden? Hvordan fungerer spillet på hjemmesiden? Hva har brukeren adgang til på hjemmesiden?
+(Frontend og det brukeren komemr til å see og støtte på nettsiden.)
 
-## **Development Battlefield hjemsiden**
+## **Utvikling/Development Battlefield hjemsiden**
 
 
 
 //TODO: Hva har burkeren adgang til på battlefields hjemsiden? Hvordan er informasjonen på nettsiden delt opp? Hvordan gjør nettsiden det enkelt og brukervennligt for spilleren til å spille spillet?
+(Nettsiden sin Utvikling.)
 
 ### **Om battlefield prosjektet**
 Battlefield hjemsiden er laget for å være en enkel måte for spilleren til å samhandle med spillet Battlefield. Battlefield hjemsiden gjør at spilleren kan skrive for å samhandle mellom nettsiden og spillet battlefield. Når spilleren skriver sitt input til hjemsiden, gjennom hjemsiden sin konsol blir inputet til spilleren sent til spillet. Informasjon fra spillet blir lastet opp og sent til Battlefield hjemsiden. 
@@ -37,3 +39,4 @@ filling in boxes -Cool i guess but be more specific what does filling in boxes d
 adding crt monitor effect like hackmud, purely visual -Could it be better without, is the effect significant? Does it enhance or muddy the personality? 
 
 //TODO: Ask about more in depth when Amund has made more progress. -How does the creator view his project, what is the purpose behind the design?
+
