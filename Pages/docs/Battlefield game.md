@@ -1,6 +1,6 @@
 # Om Battlefield spillet
 
-
+// Hvordan fungerer spillet, Hvordan spiller man spillet, Hva går spillet ut på, Hvordan fungerer spillet på hjemmesiden, Hva har brukeren.
 
 ## **Battlefield spillet**
 

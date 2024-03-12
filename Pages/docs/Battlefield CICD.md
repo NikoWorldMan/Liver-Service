@@ -1,16 +1,11 @@
 # Om Battlefield integration og oppdatering
 
-
-
+//TODO: Hvordan opplastes forandringer? (Webside, prosjektet, github, arbeid), 
+//TODO: Skriv om, Hvordan blir spillet oppdatert og publisert, få prosjektet ut I verden.
 
 ## **Battlefield Utvikling**
 
 //TODO: Skriv om, Hvordan ble spillet utviklet, Selve spill prosjektet.
-
-
-## **Battlefield oppdatering og publisering**
-
-//TODO: Skriv om, Hvordan blir spillet oppdatert og publisert, få prosjektet ut I verden.
 
 
 ## **Battlefield kommunikasjon**
