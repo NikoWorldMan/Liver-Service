@@ -4,6 +4,8 @@ Utviklings prosesen av Github pages: Skriv ned informasjon om det vi har gjort. 
 
 # Dev stuff
 
+
+
 # Pycharm mkdocs setup
 
 Pycharm setup

@@ -1,9 +1,9 @@
 # Welcome to the Homepage
 
-##**Liver-Service.**
+## **Liver-Service.**
 Local Nerds attempt to communicate.
  ___
 
-#**Battlefield: Chronicles of the Fighter Party**
+# **Battlefield: Chronicles of the Fighter Party**
 
 l
