@@ -1,3 +1,8 @@
+* {
+font-family: 'Courier New', Courier, monospace;
+
+}
+
 
 body{
     height: 100%;
@@ -9,7 +14,6 @@ h1{
     background-color: rgb(73, 182, 182);
     font-size: large;
     color: rgb(4, 4, 49);
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .logo {
@@ -249,9 +253,13 @@ color: azure;
       outline: none ;
       font-size: medium;
       font-size: small;
-      max-height: 10px;
+      max-height: 15px;
       margin: auto;
       background-color: rgb(4, 4, 49);
+      margin-left: 45px;
      }
 
-     
+    .written{
+    margin-left: 25px;
+     }
+ 
