@@ -1,12 +1,18 @@
-# About the battlefield webpage
+# Battlefield Websiden
 
-## **Development Battlefield hjemsiden**
 
-//TODO: Hva har burkeren adgang til på battlefields hjemsiden.
 
 ## **Om Battlefield hjemsiden**
 
+
+
 //TODO: Hvordan samhandler/gjør brukeren ting på nettsiden, Hva kan brukeren gjøre på nettsiden.
+
+## **Development Battlefield hjemsiden**
+
+
+
+//TODO: Hva har burkeren adgang til på battlefields hjemsiden? Hvordan er informasjonen på nettsiden delt opp? Hvordan gjør nettsiden det enkelt og brukervennligt for spilleren til å spille spillet?
 
 ### **Om battlefield prosjektet**
 Battlefield hjemsiden er laget for å være en enkel måte for spilleren til å samhandle med spillet Battlefield. Battlefield hjemsiden gjør at spilleren kan skrive for å samhandle mellom nettsiden og spillet battlefield. Når spilleren skriver sitt input til hjemsiden, gjennom hjemsiden sin konsol blir inputet til spilleren sent til spillet. Informasjon fra spillet blir lastet opp og sent til Battlefield hjemsiden. 
