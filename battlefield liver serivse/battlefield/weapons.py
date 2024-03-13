@@ -6,11 +6,9 @@ class Weapon:
     def __init__(self) -> None:
         pass
 
+    def basic(self):
+        ...
 
-class Magic(Weapon):
-    def __init__(self) -> None:
-        super().__init__()
-    
-class Necromancer(Weapon):
+class Templar(Weapon):
     def __init__(self) -> None:
         super().__init__()

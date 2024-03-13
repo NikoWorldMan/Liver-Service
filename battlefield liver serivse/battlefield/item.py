@@ -12,17 +12,18 @@ class ItemTypes:
     COMBAT = 'Combat'
 
 class Items:
-    def __init__(self, name, count, type: ItemTypes) -> None:
+    def __init__(self, name, count, type: ItemTypes, price) -> None:
 
-        self.name = str(name)
-        self.count = count
-        self.type = type
+        self.price = price
+        self.name: str = name
+        self.count: int = count
+        self.type: ItemTypes = type
 
     def clone(self):
         return copy.deepcopy(self)
 
     def display(self):
-        return self.name if self.count <= 1 else f"{self.name} (x{self.count})"
+        return f'{self.name}' if self.count <= 1 else f'{self.name} (x{self.count})'
     
     def use_attempt(self, user, inv):
         self.use_item(user, inv) if self in inv else None
@@ -39,8 +40,8 @@ class Items:
         user.set_stats()
 
 class HealthPotion(Items):
-    def __init__(self, name, count, heal_amount, maxhealth_mult, type: ItemTypes) -> None:
-        super().__init__(name, count, type)
+    def __init__(self, name, count, heal_amount, maxhealth_mult, type: ItemTypes, price) -> None:
+        super().__init__(name, count, type, price)
 
         self.healing = heal_amount
         self.maxhealth_mult = maxhealth_mult
