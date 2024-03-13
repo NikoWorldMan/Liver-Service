@@ -3,7 +3,9 @@
 
 {% block content %}
     {% for i in text_box %}
-        <div class = "written">{{ i }}</div>
+        <div class = "written">
+            {{ i }}
+        </div>
     {% endfor %}
     <form method="POST"></form>
     <div class = forms>
@@ -17,3 +19,5 @@
     </form>
 
 {% endblock %}
+
+
