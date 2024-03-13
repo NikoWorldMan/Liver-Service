@@ -2,7 +2,7 @@
 ##
 
 class Shop:
-    def __init__(self, shop_name, items, price_mult) -> None:
+    def __init__(self, shop_name: str, price_mult: float, items: list) -> None:
 
         self.name = shop_name
         self.items = items
