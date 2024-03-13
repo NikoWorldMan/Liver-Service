@@ -44,22 +44,18 @@ border: rgb(73, 182, 182);
 border-style: double;
 }
 
-.three {
+.statusbox{
 grid-column: 3;
-grid-row: 3;
+grid-row: 3/5 ;
 border: rgb(73, 182, 182);
 border-style: double;
 color: azure;
 }
 
-.statusbox{
-grid-column: 3;
-grid-row: 4 ;
-border: rgb(73, 182, 182);
-border-style: double;
-color: azure;
+.stats{
+text-align: left;
+margin-left: 30px;
 }
-  
 .chatbox {
 grid-column: 3;
 grid-row: 5/9 ;
