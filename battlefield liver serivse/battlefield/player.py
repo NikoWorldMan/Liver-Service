@@ -26,10 +26,10 @@ class Player(entity.Entity):
         self.set_stats()
         self.mana = self.stat[Stats.MANA]
 
-        self.xp = xp
-        self.xpmax = xpmax
+        self.xp: float = xp
+        self.xpmax: float = xpmax
 
-        self.inv = []
+        self.inv: list = []
 
         self.inv_space = inv_space
         self.weapon_space = weapon_space
@@ -42,7 +42,7 @@ class Player(entity.Entity):
         self.xp += amount
         while self.xp >= self.xpmax:
             self.xp -= self.xpmax
-            self.xpmax += self.xpmax/10 + 40
+            self.xpmax += self.xpmax/10 + 5
 
             self.level_up(5)
 
@@ -178,27 +178,33 @@ class Magic(Player):
 
         self.stats[Stats.MANA] = mana
 
-class Templar(Magic):
+class Templar(Player):
     type = 'Templar'
     desc = 'Posesses powerful attacks and shielding abilities'
-
+    ability_info = 'Notable skills:\n- All attacks ignore some DEF and delays the enemy'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
+
 class Necromancer(Magic):
     type = 'Necromancer'
     desc = "Summons minions to aid in battles"
+    ability_info = 'Notable skills:\n- Can summon monsters half i\'ts level'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
-class Psion(Magic):
+
+class Psion(Player):
     type = 'Psion'
     desc = 'Has the power of mind control'
-    ability_info = 'Notable skills:\n- Life steal'
+    ability_info = 'Notable skills:\n- High speed\n- Life steal\n Can make decoys of itself'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
-class MaledictionMage:
-    type = 'Malediction Mage'
-    desc = "Has access to powerful spells, but has slow speed"
+
+class MalisonMage(Magic):
+    type = 'Malison Mage'
+    desc = "Access to powerful spells, but has low speed"
     ability_info = 'Notable skills:\n- Apply debuffs to enemies'
+    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
+        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 
 
-classes = [MaledictionMage, Necromancer, Psion, Templar]
+classes = [MalisonMage, Necromancer, Psion, Templar]

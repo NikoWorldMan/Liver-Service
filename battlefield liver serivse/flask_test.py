@@ -9,7 +9,7 @@ from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 app.secret_key = "Wu7&epk#@£@]9ee9009o340£$]}@}OI=)=!"
 
-player = Player('Magus Supremus', 4, 100, 100, 100, 100, 100, 5, 50, 5, 5, 10, 0, 100)
+player = Player('Magus Supremus', 4, 100, 100, 100, 100, 100, 5, 50, 5, 5, 50, 0, 100)
 player.states = [iterate_game.Game.State.IDLE]
 
 test = {"test": "wow"}
@@ -56,6 +56,7 @@ def update_chat():
 
 @app.route('/', methods=['POST'])
 def base_post():
+    
     text = request.form['text']
     new_text = text.upper()
     prev_text = Glob.texty
@@ -66,7 +67,8 @@ def base_post():
         #new_text = random.choice(random_text)
 
         else:
-            game_output = iterate_game.Game.iterate(player, new_text)
+            game_output: list[str] = ['', f'^^^^^^^^^^^^^^^^^^^^^^^^^^']
+            game_output.extend(iterate_game.Game.iterate(player, new_text))
 
             for i in game_output:
                 prev_text.append(i)
@@ -75,7 +77,8 @@ def base_post():
                 Glob.texty.remove(Glob.texty[0])
 
         Glob.texty = prev_text
-        return render_template('text.html', text_box = Glob.texty)
+    return render_template('text.html', text_box = Glob.texty)
+    
 
 
 if __name__=='__main__': 

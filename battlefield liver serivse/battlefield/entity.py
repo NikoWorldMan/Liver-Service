@@ -10,6 +10,7 @@ class Stats:
     MANA = "MP"
     ATTACK = "ATK"
     DEFENCE = "DEF"
+    CURRENT_DEF = "CDEF"
     SPEED = "SPD"
     CRITRATE = "CRIT Rate"
     CRITDMG = "CRIT DMG"
@@ -18,12 +19,16 @@ class Stats:
 
 class Entity: # Default attributes all entities possess
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
+
+
+        self.turn_value: int = 0
+        self.overflow_value: int = 0
         
-        self.maxlv = 90
+        self.maxlv: int = 90
         self.name = str(name)
         self.level = level
         self.stats = dict()
-        self.buffs = []
+        self.buffs: list = []
 
         self.stat = dict()
 
@@ -40,12 +45,10 @@ class Entity: # Default attributes all entities possess
 
         self.inv = []
 
-    def list_stats(self):
+    def list_stats(self) -> list[str]:
         self.set_stats()
-        
 
-        print("\n[ ------------------------- ]")
-        print(f"{self.name} - Level: {self.level} ( {self.xp} / {self.xpmax} )")
+        output = [f'{self.name}\'s stats:']
         for stat in self.stat:
             stats = f"- {stat}: "
             if stat == Stats.HEALTH:
@@ -58,9 +61,9 @@ class Entity: # Default attributes all entities possess
                 stats += f"{self.stat[stat]} %"
             else:
                 stats += f"{self.stat[stat]}"
-
-            print(stats)
-        print()
+            
+            output += [stats]
+        return output + ['']
 
         
 
@@ -71,17 +74,20 @@ class Entity: # Default attributes all entities possess
         self.stat = self.get_true_stats()
         #self.display_health()
 
-    def display_health(self):
-        print(f"Lv. {self.level} {self.name} ( {self.health} / {self.stat[Stats.HEALTH]} )")
+    def display_health(self) -> list[str]:
+        return [f"Lv. {self.level} {self.name} ( {self.health} / {self.stat[Stats.HEALTH]} )"]
 
     def get_true_stats(self):
 
         mod_stat = self.stats.copy()
 
         for buff in self.buffs:
-            if buff in self.buffs.Types:
-                if buff.stat in self.stats:
-                    mod_stat[buff.stat] *= buff.amount
+            try:
+                if buff in self.buffs.Types:
+                    if buff.stat in self.stats:
+                        mod_stat[buff.stat] *= buff.amount
+            except:
+                print(f"WARN: {buff} not in entity.stat pool")
 
         return mod_stat
     
@@ -89,26 +95,16 @@ class Entity: # Default attributes all entities possess
         return True if Stats.HEALTH in self.stats and self.health > 0 else False
     
     def crit_hit(self):
-        damage = 1.1
-        overcrit = 0
-        while self.stat[Stats.CRITRATE] - overcrit > random.randrange(0, 100):
-            overcrit += 100
-
-            damage += self.stat[Stats.CRITDMG]/(120+(overcrit*0.6))
-
-        if overcrit > 0:
-            crit = f" - > CRIT"
-            if overcrit > 100:
-                crit += f" (x{int(overcrit/100)})"
-            print(crit + f" < -")
-
-        return damage
+        return True if self.stat[Stats.CRITRATE] > random.randrange(0, 100) else False
+    def crit_dmg(self):
+        return ( self.stat[Stats.CRITDMG] / 100 )
     
-    def damage_reduction(self, attacker):
-        levelDiff = 0
+    def damage_reduction(self, attacker, def_mult: float) -> float:
+        defence = self.stat[Stats.DEFENCE] * def_mult
+        levelDiff: int = 0
         if attacker.level > self.level:                                                   
             levelDiff = attacker.level - self.level
-        return 1-(self.stat[Stats.DEFENCE]/(self.stat[Stats.DEFENCE]+4000+1500*levelDiff))
+        return 1-(defence / (defence+4000 + 1500*levelDiff))
 
     def change_health(self, amount):
         if "HP" in self.stats:
@@ -120,14 +116,22 @@ class Entity: # Default attributes all entities possess
         else:
             pass
 
-    def attack(self, target, mult, add):
-        damage_variance = random.randrange(95, 105)/100
+    def attack(self, target, mult, add, def_ignore: float):
+        damage_variance = random.randrange(98, 102)/100
+        output: list[int] = []
+        crit: int = 1
 
-        damage=round((self.stat[Stats.ATTACK]*mult+add) * self.crit_hit() * target.damage_reduction(self) * damage_variance+0.5)
-        print(f"Lv. {self.level} {self.name} dealt {damage} damage to {target.name} (Lv. {target.level})\n")
+        if self.crit_hit():
+            crit += self.crit_dmg()
+            output.extend[f" - > CRIT < - "]
+
+        damage=round((self.stat[Stats.ATTACK]*mult+add) * crit * target.damage_reduction(self, def_ignore) * damage_variance+0.5)
+        output.extend[f"Lv. {self.level} {self.name} dealt {damage} damage to {target.name} (Lv. {target.level})", '']
 
         target.change_health(damage*-1)
-        target.display_health()
+        output.extend[target.display_health()]
+
+        return output
 
     def attack_options(self, team):
 
@@ -138,10 +142,24 @@ class Entity: # Default attributes all entities possess
             team.remove(target)
 
 
-    def get_action_value(self, cycle_mult):
-        return cycle_mult/self.stat[Stats.SPEED]
+    def get_action_value(self, turn_cycle) -> int:
+        return turn_cycle/self.stat[Stats.SPEED]
     
+    def change_action_value(self, flat_amount: int, amount: float, turn_cycle) -> list[str]:
+        """
+        Change action value, based on base action value and/or a flat amount
+        Lower action value means you go faster.
+        Use a "-" infront of the int to decrease value instead of increase
+        """
+        base_action_value = self.get_action_value(turn_cycle)
+        turn_value_change = (base_action_value * amount) + flat_amount
 
+        if turn_value_change > 0:
+            output =  [f'{self.name}\'s Action was delayed by { (turn_value_change/base_action_value) * 100 }%']
+        else:
+            output =  [f'{self.name}\'s Action was advanced by { (turn_value_change/base_action_value) * -100 }%']
 
+        self.turn_value += turn_value_change
 
-
+        return output
+    
