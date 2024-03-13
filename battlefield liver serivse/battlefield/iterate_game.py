@@ -75,6 +75,9 @@ class Game:
     def stats_iterate(self) -> list[str]:
         output: list[str] = []
         output.extend(self.list_stats())
+
+        output.extend(Game.state_info(self, []))
+
         return output
 
     def fight_iterate(self) -> list[str]:
@@ -135,6 +138,9 @@ class Game:
 
     def inventory_state(self, cmd) -> list[str]:
         output: list[str] = []
+        output.extend(Game.inventory_iterate(self))
+        self.states.pop(-1)
+
         if cmd == 'x':
             self.states.pop(-1) # Goes back to the previous state
             output.extend(Game.state_info(self, [f'You closed you\'r inventory...']))
