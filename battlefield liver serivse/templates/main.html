@@ -10,17 +10,26 @@
 <div class = crt>
     <div class="wrapper">
         <div class="one"></div>
-        <div class="two"></div>
+        <div class="two">      
+        </div>
         <div class="three"></div>
-        <div class="statusbox"><h1>Status</h1></div>
+        <div class="statusbox">
+            <h1>Status</h1>
+            <div class="stats">
+                HP 0
+                DEF 0
+                SPD 0
+                INT 0
+                ATK 0
+                ACC 0  
+            </div>
+        </div>
         <div class="chatbox">           
             <h1>Chat</h1>
         </div>
         <div class = "commands">
-            <pre>
-                {% block content %}
-                {% endblock %}                          
-            </pre>
+            {% block content %}
+            {% endblock %}                          
         </div>
         <div class="logo">
             <pre>
