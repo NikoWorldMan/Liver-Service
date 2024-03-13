@@ -4,7 +4,11 @@
 {% block content %}
     {% for i in text_box %}
         <div class = "written">
-            {{ i }}
+            {% if not i == '' %}
+                {{ i }}
+            {% else %}    
+                <br>
+            {% endif %}
         </div>
     {% endfor %}
     <form method="POST"></form>
@@ -19,5 +23,3 @@
     </form>
 
 {% endblock %}
-
-
