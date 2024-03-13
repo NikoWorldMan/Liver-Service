@@ -67,13 +67,13 @@ def base_post():
         #new_text = random.choice(random_text)
 
         else:
-            game_output: list[str] = ['', f'^^^^^^^^^^^^^^^^^^^^^^^^^^']
+            game_output: list[str] = [f'', f'^^^^^^^^^^^^^^^^^^^^^^^^^^']
             game_output.extend(iterate_game.Game.iterate(player, new_text))
 
             for i in game_output:
                 prev_text.append(i)
 
-            while len(Glob.texty) > 15:
+            while len(Glob.texty) > 29:
                 Glob.texty.remove(Glob.texty[0])
 
         Glob.texty = prev_text
