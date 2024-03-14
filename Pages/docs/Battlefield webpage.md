@@ -8,9 +8,9 @@ Brukeren kan kommunikusere på nettsiden gjennom terminalen. Terminalen Gjennom 
 
 ## **Utvikling/Development Battlefield hjemsiden**  
 
-Nettsiden har blitt delt opp i flere bokser, hver med sin egen funskjon. For å gjøre det enklere å lese og navigere på nettsiden.  
+Nettsiden har blitt delt opp i flere bokser, hver med sin egen funskjon. For å gjøre det enklere å lese og navigere på nettsiden.   
 
-Netsiden er delt inn i 4 bokser:  
+Netsiden er delt inn i 4 bokser:   
  
  - Den første og største inneholder logoen for spillet og terminalen, hvor spilleren skriver inn komandoer.  
 
