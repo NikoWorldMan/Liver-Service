@@ -6,13 +6,21 @@
 import time
 import random
 #import effects
+
+
+
 import battlefield.entity as entity
 import battlefield.item as items
-
+import battlefield.weapons as weapons
+from battlefield.item import ItemTypes
 from battlefield.entity import Stats
 
+
+
+
+
 class Player(entity.Entity):   
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
+    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, item_space, weapon_space, currency, xp ,xpmax):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
         self.states = []
@@ -31,7 +39,7 @@ class Player(entity.Entity):
 
         self.inv: list = []
 
-        self.inv_space = inv_space
+        self.item_space = item_space
         self.weapon_space = weapon_space
         self.currency = currency
 
@@ -46,8 +54,17 @@ class Player(entity.Entity):
 
             self.level_up(5)
 
-
-
+    def get_inventory_space(self, type: list) -> int:
+        space: int = 0
+        for i in self.inv:
+            if i.type in type:
+                space += i.storage*i.count
+        return space
+    def get_total_inventory_space(self) -> int:
+        space: int = 0
+        for i in self.inv:
+            space += i.storage*i.count
+        return space
 
 
     def action_loop(self):
@@ -144,13 +161,14 @@ class Player(entity.Entity):
             count +=1
             print(f"({count}) {item.display()}")
 
-    def collect_item(self, inv, item):
-        
-        if item in inv:
-            index = inv.index(item)
-            inv[index].count += item.count
-        else:
-            inv.append(item)
+    def collect_item(self, item):
+
+        for i in self.inv:
+            if i.name == item.name:
+                i.count += item.count
+                return
+
+        self.inv.append(item.clone())
 
     def initiate_battle(self, allies, opponents):
         pass
@@ -188,23 +206,41 @@ class Templar(Player):
 class Necromancer(Magic):
     type = 'Necromancer'
     desc = "Summons minions to aid in battles"
-    ability_info = 'Notable skills:\n- Can summon monsters half i\'ts level'
+    ability_info = 'Notable skills:, Can summon monsters half i\'ts level'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 
 class Psion(Player):
     type = 'Psion'
     desc = 'Has the power of mind control'
-    ability_info = 'Notable skills:\n- High speed\n- Life steal\n Can make decoys of itself'
+    ability_info = 'Notable skills: High speed, Life steal, Can make decoys of itself'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 
-class MalisonMage(Magic):
+class Blightbringer(Magic):
     type = 'Malison Mage'
     desc = "Access to powerful spells, but has low speed"
-    ability_info = 'Notable skills:\n- Apply debuffs to enemies'
+    ability_info = 'Notable skills: Apply debuffs to enemies'
     def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 
+    def create_weapon(self, rarity: int, name: str | None):
+        """
+        rarity = 1 / 2 / 3
+        Choosing any other number will cause the weapon to be of random rarity
+        """
 
-classes = [MalisonMage, Necromancer, Psion, Templar]
+        
+        if name is None:
+            ...
+
+        weapon = weapons.Weapon(ItemTypes.WEAPON)
+
+
+
+
+
+
+
+
+classes = [Blightbringer, Necromancer, Psion, Templar]

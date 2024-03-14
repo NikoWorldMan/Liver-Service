@@ -16,6 +16,12 @@ class Stats:
     CRITDMG = "CRIT DMG"
     FUSE = "FUSE"
 
+class Attack:
+    SINGLE = "Single Target"
+    AREA = "Single and Adjacent Target"
+    FIELD = "All Targets"
+    RANDOM = "Random Targets"
+
 
 class Entity: # Default attributes all entities possess
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):

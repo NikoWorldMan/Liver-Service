@@ -31,16 +31,17 @@ class Player:
         return int(sqrt(o(x_distance**2) + o(y_distance**2)))
 
 
-p = Player()
+if __name__ =="__main__":
+    p = Player()
 
-p_1 = p.clone()
-p_2 = p.clone()
+    p_1 = p.clone()
+    p_2 = p.clone()
 
-p_1.location[Location.X] = 0
-p_1.location[Location.Y] = 0
- 
-p_2.location[Location.X] = 0
-p_2.location[Location.Y] = 0
+    p_1.location[Location.X] = 0
+    p_1.location[Location.Y] = 0
+    
+    p_2.location[Location.X] = 0
+    p_2.location[Location.Y] = 0
 
 
-print("Player1 is (", p_1.distance(p_2),") tiles away from Player2")
+    print("Player1 is (", p_1.distance(p_2),") tiles away from Player2")
