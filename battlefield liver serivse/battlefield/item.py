@@ -10,10 +10,12 @@ class ItemTypes:
     CONSUMABLE = 'Consumable'
     ITEM = 'Item'
     COMBAT = 'Combat'
+    WEAPON = 'Weapon'
 
 class Items:
-    def __init__(self, name, count, type: ItemTypes, price) -> None:
+    def __init__(self, name, count, type: ItemTypes, price, storage) -> None:
 
+        self.storage = storage
         self.price = price
         self.name: str = name
         self.count: int = count
@@ -40,8 +42,8 @@ class Items:
         user.set_stats()
 
 class HealthPotion(Items):
-    def __init__(self, name, count, heal_amount, maxhealth_mult, type: ItemTypes, price) -> None:
-        super().__init__(name, count, type, price)
+    def __init__(self, name, count, heal_amount, maxhealth_mult, type: ItemTypes, price, storage) -> None:
+        super().__init__(name, count, type, price, storage)
 
         self.healing = heal_amount
         self.maxhealth_mult = maxhealth_mult

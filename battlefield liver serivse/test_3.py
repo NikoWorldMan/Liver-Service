@@ -1,46 +1,17 @@
+import random
+
+class English:
+    weapon_name_first_half: list[str] = ['Great', 'Thunder', 'Storming', 'Storm', 'Vortex', 'Fury', 'Eclipse', 'Abyss', 'Abyssal', 'Radiance', 'Ghost', 'Flaming', 'Crescent', 'Morning', 'The', 'Long', 'Short', 'True', 'Apocalyptic', 'Meteor', 'Twilight', 'Smiting', 'Solar', 'Sonar', 'Crystal', 'Menacing', 'Ominous', 'Tempest', 'Dive', 'Angry']
+    weapon_name_second_half: list[str] = ['Weapon', 'Blast', 'Flare', 'Staff', 'Cane', 'Lance', 'Pike', 'Blade', 'Saber', 'Quarterstaff', 'Scythe', 'Star', 'Zweihander', 'Shortsword', 'Longsword', 'Excalibur', 'Nightfall', 'Serpent', 'Kanana', 'Strike', 'Spring', 'Summer', 'Autumn', 'Winter', 'Rocket Launcher', 'Launcher', 'Pumpkin', 'Cast']
+
+class Norsk:
+    weapon_name_first_half: list[str] = ['Lumske', 'De Vandødes', 'Siste', 'Virvlende', 'Forhekset', 'vræde', 'Fantastisk', 'Merkelig', 'Månemannen\'s', ]
+    weapon_name_second_half: list[str] = ['Skrekk', 'Dyp', 'Sprell', 'Tryllestav', 'Bestikk', 'Værktøy', 'Vrede', 'Utstråling']
 
 
+def random_choice(list: list) -> any:
+    return random.choice(list)
 
-class Game:
-    class State:
-        USER_CREATE = 0
-        IDLE = 1
-        BATTLE = 2
-        BATTLE_USE_SKILL
-        BATTLE_SELECT_ENEMY
-        SHOP = 3
+name = f'{random_choice(Norsk.weapon_name_first_half)} {random_choice(Norsk.weapon_name_second_half)}'
 
-
-    def __init__(self) -> None:
-        pass
-
-    def iterate(player, command, state):
-        pass
-
-        if True:
-            print("wow")
-        else:
-            return f'{command} is not an option'
- 
-
-def game_loop(player):
-
-    test = [1, 2, 3, 4, 3]
-
-    player_state = player.state[-1]
-
-    if player_state == battle:
-        Print("battle")
-
-        if leave_battle:
-            test.pop(-1)
-
-
-if __name__ =='__main__':
-    game_loop()
-
-
-
-
-
-battle = ['player', 'player', uid]
+print(f'\nBehold, {name}\n')
