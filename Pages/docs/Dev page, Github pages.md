@@ -1,6 +1,6 @@
-# Setup for github pages 
+# Setup for github pages  
 
--
+-  
 
 
 WIP
@@ -8,15 +8,15 @@ WIP
 (Mine egne notater om github pages.)
 ```
 
-# Dev stuff
+# Dev stuff  
 
-Utviklings prosesen av Github pages: Skriv ned informasjon om det vi har gjort. Skriv spørsmål til informasjonen jeg har. skriv ned informasjon basert på de spørsmåla. Still spørsmål til den nye informasjonen.
+Utviklings prosesen av Github pages: Skriv ned informasjon om det vi har gjort. Skriv spørsmål til informasjonen jeg har. skriv ned informasjon basert på de spørsmåla. Still spørsmål til den nye informasjonen.  
 
-# Pycharm mkdocs setup
+# Pycharm mkdocs setup  
 
-Pycharm setup
+Pycharm setup  
 
-Terminal commands docs.
+Terminal commands docs.  
 ```markdown
 22.11.23
 #writing down some terminal commands, so I don't forget how to get mkdocs running.
@@ -34,10 +34,10 @@ python -m mkdocs serve
 #insert own value on where and what port to host it on.
 ```
 
-# Publishing pages
+# Publishing pages  
 
 
-On github
+On github  
 ```markdown
 #Adding gh-pages to github
 #The .github file that has the workflows and ci.yml file needs to be first and on top of the other files.

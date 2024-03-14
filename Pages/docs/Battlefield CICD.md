@@ -1,8 +1,8 @@
-# Battlefield Utvikling/Development
+# Battlefield Utvikling/Development  
 
-## **Om Battlefield integration og oppdatering**
+## **Om Battlefield integration og oppdatering**  
 
--
+-  
 
 
 WIP
@@ -11,9 +11,9 @@ WIP
 //TODO: Skriv om, Hvordan blir spillet oppdatert og publisert, få prosjektet ut I verden.
 ```
 
-## **Battlefield Utvikling**
+## **Battlefield Utvikling**  
 
--
+-  
 
 
 WIP
@@ -22,9 +22,9 @@ WIP
 (Hele prosjektet sinn utvikling)
 ```
 
-## **Battlefield kommunikasjon**
+## **Battlefield kommunikasjon**  
 
--
+-  
 
 
 WIP
