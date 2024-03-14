@@ -1,7 +1,8 @@
 # Velkommen til Battlefields pages  
 
 Dette er pages siden til Battlefields  
-Her kan du lese mer om de forskjellige delene av prosjektet Battlefield  
+
+Her kan du lese mer om de forskjellige delene av prosjektet Battlefield   
 
 ## **Liver-Service.**  
 Local Nerds attempt to communicate.  
