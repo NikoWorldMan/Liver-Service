@@ -4,10 +4,7 @@
 
 ## **Om Battlefield hjemsiden**
 
-
-
-//TODO: Hvordan samhandler/gjør brukeren ting på nettsiden? Hva kan brukeren gjøre på nettsiden? Hvordan fungerer spillet på hjemmesiden? Hva har brukeren adgang til på hjemmesiden?
-(Frontend og det brukeren komemr til å see og støtte på nettsiden.)
+Brukeren kan kommunikusere på nettsiden gjennom terminalen. Terminalen Gjennom terminalen kan brukern gi spillet kommandoer. 
 
 ## **Utvikling/Development Battlefield hjemsiden**
 
