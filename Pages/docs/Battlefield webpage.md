@@ -10,15 +10,15 @@ Brukeren kan kommunikusere på nettsiden gjennom terminalen. Terminalen Gjennom 
 
 Nettsiden har blitt delt opp i flere bokser, hver med sin egen funskjon. For å gjøre det enklere å lese og navigere på nettsiden.   
 
-Netsiden er delt inn i 4 bokser:   
- 
- - Den første og største inneholder logoen for spillet og terminalen, hvor spilleren skriver inn komandoer.  
+Netsiden er delt inn i 4 bokser:  
 
- - Den andre har et "profil bilde" som viser karakteren og statusen til spilleren.  
+- Den første og største inneholder logoen for spillet og terminalen, hvor spilleren skriver inn komandoer.  
+
+- Den andre har et "profil bilde" som viser karakteren og statusen til spilleren.  
  
- - Den tredje som ligger under profilbilde viser info og statistikk om spilleren sin karakteren som liv mana osv.  
+- Den tredje som ligger under profilbilde viser info og statistikk om spilleren sin karakteren som liv mana osv.  
  
- - Den siste boksen på bunnen er en chatbox for snakke med andre spillere.  
+- Den siste boksen på bunnen er en chatbox for snakke med andre spillere.  
 
 
 WIP
