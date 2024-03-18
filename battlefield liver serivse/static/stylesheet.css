@@ -249,13 +249,18 @@ color: azure;
     input{ 
       color: rgb(73, 182, 182);
       border: none;
-      outline: none ;
+      outline: none;
       font-size: medium;
-      font-size: small;
       max-height: 15px;
       margin: auto;
       background-color: rgb(4, 4, 49);
       margin-left: 45px;
+     }
+    
+     input:not(:focus){
+      background-color: aqua;
+      outline: none;
+      border: none;
      }
 
     .written{
