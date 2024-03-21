@@ -28,8 +28,7 @@ def uid():
 @app.route('/')
 def base():
     
-    if "uid" in session:
-        
+    if "uid" in session:  
         if len(Global.accounts) < 1:
             session.clear()
             return redirect(url_for("uid"))
@@ -38,14 +37,14 @@ def base():
             if i.uid == int(session["uid"]):
                 user = i
 
-        return render_template('text.html', text_box = user.texty, chat_box = account.Global.chat, player_stats = None)
+        return render_template('text.html', text_box = user.texty, chat_box = Global.chat, player_stats = None)
     else:
         return redirect(url_for("uid"))
 
 
 @app.route('/', methods=['POST'])
 def base_post():
-    game_output: list[str] = [f'', f'/ - - > -']
+    game_output: list[str] = [f'', f'', f'/ - - > -']
 
     if len(Global.accounts) < 1:
         session.clear()
@@ -83,7 +82,7 @@ def base_post():
         for i in game_output:
             previous_text.append(i)
 
-        while len(user.texty) > 25:
+        while len(user.texty) > 23:
             user.texty.remove(user.texty[0])
 
         user.texty = previous_text

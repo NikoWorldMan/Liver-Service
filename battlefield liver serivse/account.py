@@ -42,6 +42,7 @@ class Account:
         if self.state == States.NAME:
 
             self.name = name.upper()
+            self.player.name = self.name
             output.extend([f'Hello, {name}!'])
         else:
             self.state = States.NAME
