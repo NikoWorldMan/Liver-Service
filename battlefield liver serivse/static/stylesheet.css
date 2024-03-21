@@ -19,18 +19,18 @@ color: rgb(73, 182, 182);;
 }
 
 .logo {
-grid-column: 1/2;
+grid-column: 1;
 grid-row: 1;
 color:rgb(73, 182, 182);
 }
 
 .wrapper {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
-grid-auto-rows: minmax(100px, auto);
-column-gap: 3px;
-row-gap: 3px;
+grid-template-columns: repeat(1, 1fr);
+gap: 0.2em;
+grid-auto-rows: minmax(6.3em, auto);
+column-gap: 0.2em;
+row-gap: 0.2em;
 }
 
 .one {
@@ -38,10 +38,11 @@ grid-column: 1 / 3;
 grid-row: 1/ 11;
 }
 .two {
-grid-column: 3 / 3;
+grid-column: 3;
 grid-row: 1 / 3;
 border: rgb(73, 182, 182);
 border-style: double;
+margin-left: -25em;
 }
 
 .statusbox{
@@ -49,22 +50,27 @@ grid-column: 3;
 grid-row: 3/5 ;
 border: rgb(73, 182, 182);
 border-style: double;
-color: azure;
+color: wheat;
+margin-left: -25em;
 }
 
 .stats{
 text-align: left;
-margin-left: 30px;
+font-size: large;
+padding-left: 0.5em;
 }
+
 .chatbox {
 grid-column: 3;
 grid-row: 5/9 ;
 border: rgb(73, 182, 182);
 border-style: double;
-color: azure;
+color: wheat;
+margin-left: -25em;
+margin-bottom: 1.3em;
 }
-        
 
+        
 @keyframes flicker {
     0% {
       opacity: 0.27861;
@@ -231,15 +237,13 @@ color: azure;
   }
 
   .commands{
-    grid-column:1/3;
+    grid-column:1/2;
     grid-row: 2/10;
     color: wheat;
     }
 
     .forms{
-      position: fixed;
-      margin-top: 666px;
-      left: -16px;
+      margin-top: 49.5em;
       margin-inline-end: 200%;
       position: absolute;
       top: 0;
@@ -249,16 +253,19 @@ color: azure;
     input{ 
       color: rgb(73, 182, 182);
       border: none;
-      outline: none ;
+      outline: none;
       font-size: medium;
-      font-size: small;
-      max-height: 15px;
-      margin: auto;
+      max-height: 15em;
       background-color: rgb(4, 4, 49);
-      margin-left: 45px;
+      margin-left: 1.5em;
+     }
+    
+     input:not(:focus){
+      outline: none;
+      border-style:dotted;
      }
 
     .written{
-    margin-left: 25px;
+    margin-left: 1.5em;
      }
  

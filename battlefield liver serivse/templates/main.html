@@ -15,18 +15,34 @@
         <div class="statusbox">
             <h1>Status</h1>
             <div class="stats">
-                <pre>
- HP DEF ACC MANA SPD CRR CRD
- 0/0 0   0  0/0   0   0%  0%
-                </pre>
+
+                {% for i in player_stats %}
+                    {{ i }}
+                    <br>
+                {% endfor %}
+
             </div>
         </div>
         <div class="chatbox">           
             <h1>Chat</h1>
         </div>
         <div class = "commands">
-            {% block content %}
-            {% endblock %}                          
+                {% for i in text_box %}
+                    <div class = "written">
+                        {% if not i == '' %}
+                            {{ i }}
+                        {% else %}    
+                            <br>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <form autocomplete="off" method="POST">
+                    <div class = "forms">
+                        <input autocomplete="off" autofocus = "yes" name="text" minlength="1" maxlength="6" >
+                    </div>
+                </form>
+            
+        
         </div>
         <div class="logo">
             <pre>

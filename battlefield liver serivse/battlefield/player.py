@@ -3,40 +3,81 @@
 # player.py
 # player class
 #
+
+# Imports
 import time
 import random
-#import effects
 import battlefield.entity as entity
 import battlefield.item as items
-
+import battlefield.weapons as weapons
+from battlefield.item import ItemTypes
 from battlefield.entity import Stats
+from battlefield.entity import Stat
+from battlefield.iterate_game import Game
 
-class Player(entity.Entity):   
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg, inv_space, weapon_space, currency, xp ,xpmax):
+
+
+
+class Player(entity.Entity):  
+    type = 'Player' 
+    def __init__(self, name=str, level=int, health=Stat, attack=Stat, defence= Stat, speed=Stat, critrate=Stat, critdmg=Stat, stamina=Stat, item_space=int, weapon_space=int, currency=int, xp=int, xpmax=int):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
 
-        self.states = []
+        self.states = [Game.State.IDLE]
         self.using_skill = None
         self.weapon = None
 
-        self.maxlv = 80
-        self.biome = None
-
-        self.stats[Stats.MANA] = mana
+        self.stat[Stats.STAMINA] = stamina
         self.set_stats()
-        self.mana = self.stat[Stats.MANA]
+        self.stamina = self.stat[Stats.STAMINA].stat
+
+        self.maxlv: int = 90
+        self.level_iterations = 10
+        self.stat_max_upgrades_per_level_iteration = 4
 
         self.xp: float = xp
         self.xpmax: float = xpmax
 
         self.inv: list = []
+        self.biome = None
 
-        self.inv_space = inv_space
+        self.item_space = item_space
         self.weapon_space = weapon_space
         self.currency = currency
 
-    def level_up(self, rolls):
-        print("you leveled up!")
+    def display_health(self) -> list[str]:
+        return [f"Lv. {self.level} {self.name} '{self.type}' ( {int(self.health)} / {int(self.stat[Stats.HEALTH].stat)} )"]
+
+    def list_stats(self) -> list[str]:
+        self.set_stats()
+
+        output = [f"{self.name} - {self.type} Lv. {self.level}"]
+        stats: list = []
+
+        line = "-" * ( len(output[0]) -1 )
+
+        stats.extend([f'XP: {self.xp} / {self.xpmax}', f' {line} '])
+
+        if Stats.HEALTH in self.stat:
+            stats.extend([f"- {Stats.HEALTH}: {int(self.health)} / {int(self.stat[Stats.HEALTH].stat)}"])
+        if Stats.STAMINA in self.stat:
+            stats.extend([f"- {Stats.STAMINA}: {int(self.stamina)} / {int(self.stat[Stats.STAMINA].stat)}"])
+        if Stats.MANA in self.stat:
+            stats.extend([f"- {Stats.MANA}: {int(self.mana)} / {int(self.stat[Stats.MANA].stat)}"])
+        if Stats.ATTACK in self.stat:
+            stats.extend([f"- {Stats.ATTACK}: {int(self.stat[Stats.ATTACK].stat)}"])
+        if Stats.DEFENCE in self.stat:
+            stats.extend([f"- {Stats.DEFENCE}: {int(self.stat[Stats.DEFENCE].stat)} "])
+        if Stats.SPEED in self.stat:
+            stats.extend([f"- {Stats.SPEED}: {int(self.stat[Stats.SPEED].stat)}"])
+        if Stats.CRITRATE in self.stat:
+            stats.extend([f"- {Stats.CRITRATE}: {round(self.stat[Stats.CRITRATE].stat, 1)} %"])
+        if Stats.CRITDMG in self.stat:
+            stats.extend([f"- {Stats.CRITDMG}: {round(self.stat[Stats.CRITDMG].stat, 1)} %"])
+
+        output.extend(stats)
+        return output + ['']
+
 
     def gain_xp(self, amount):
         self.xp += amount
@@ -46,111 +87,26 @@ class Player(entity.Entity):
 
             self.level_up(5)
 
+    def get_inventory_space(self, type: list) -> int:
+        space: int = 0
+        for i in self.inv:
+            if i.type in type:
+                space += i.storage*i.count
+        return space
+    def get_total_inventory_space(self) -> int:
+        space: int = 0
+        for i in self.inv:
+            space += i.storage*i.count
+        return space
 
+    def collect_item(self, item):
 
-
-
-    def action_loop(self):
-        print()
-        print(f'Select one of the following actions:\nShop: (S) | Fight: (F) | Dungeon: (D) | Inventory: (I) | Armory: (A) ')
-        user_input = input('What would you like to do now? ').lower()
-
-        if user_input == 'i':
-
-
-            for types in items.ItemTypes:
-                num = 0
-                count = []
-                print(f'\n{types}:')
-
-                for item in self.inv:
-                    if item.type == items.ItemTypes.ITEM:
-                        count += 1
-                        num.append(str(count))
-
-                    if item.type == items.ItemTypes.CONSUMABLE:
-                        count += 1
-                        num.append(str(count))
-
-            print(f'')
-            user_input = input(f'What item would you like to use?\n\n= ')
-
-            if str(user_input) in num:
-                num[user_input].use_item(self, self.inv)
-
-
-
-        elif user_input == 'f':
-            print("fight")
-
-        elif user_input == 's':
-            print("shop")
-
-        elif user_input == 'a':
-            print("armory")
-
-        elif user_input == 'd':
-            print("dungeon")
-
-    def attack_options(self, team):
-
-        userInput = ""
-        while userInput!="f":
-
-            for entity in team:
-                entity.display_health()
-
-            print()
-            print("You have",self.health,"/",self.stat[Stats.HEALTH],"health")
-            userInput=input("What do you do?\nInventory: (I) | Attack: (F) | Combat Items: (V) | Retreat: (X) ").lower()
-            print(">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^<\n")
-
-            if userInput == "i":
-
-                print("- Items")
-                displayInv(p, p.inventory, 0)
-                print("\n- Consumable Items")
-                displayInv(self.consumable_inv, 1)
-
-            elif userInput =="f":
-                print("Who do you want to attack? Cancel (e)")
-                mob =random.choice(team)
-
-                for entity in team:
-                    entity.display_health()
-
-                input()
-
-                self.attack(mob, 1, 0)
-                time.sleep(0.4)
-
-                if mob.alive() == False:
-                    print(f"Lv. {mob.level} {mob.name} died.")
-                    team.remove(mob)
-
-            elif userInput =="V":
-                print("\n- Combat Items")
-                displayInv(self.weapon_inv, 1)
-
-            elif userInput =="x":
-                print("\nYou got hurt while running away")
-                self.health = 1
-                print("you are now at",self.health,"health\n")
+        for i in self.inv:
+            if i.name == item.name:
+                i.count += item.count
                 return
-    
-    def list_inventory(self, inv, can_use):
-        count = 0
-        for item in inv:
-            count +=1
-            print(f"({count}) {item.display()}")
 
-    def collect_item(self, inv, item):
-        
-        if item in inv:
-            index = inv.index(item)
-            inv[index].count += item.count
-        else:
-            inv.append(item)
+        self.inv.append(item.clone())
 
     def initiate_battle(self, allies, opponents):
         pass
@@ -158,53 +114,72 @@ class Player(entity.Entity):
     def shop(self, shop):
         pass
 
-    def options_loop(self):
-        while True:
-            pass
-            
-            userInput =""
-            print("\nselect one of the following actions:\nShop: (S) | Fight: (F) | Dungeon: (D) | Inventory: (I) | Stats: (T) | Exit: (X)")   #
-            userInput=input("what do you want to do now? ").lower()
-
-            print("\n[ -------------------- ]\n")
-
-            if userInput == "s":
-                pass
-
+   
 
 class Magic(Player):
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
+    type = 'Magic'
+    def __init__(self, name=str, level=int, health=Stat, mana=Stat, attack=Stat, defence=Stat, speed=Stat, critrate=Stat, critdmg=Stat, stamina=Stat, item_space=int, weapon_space=int, currency=int, xp=int, xpmax=int):
+        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg, stamina, item_space, weapon_space, currency, xp, xpmax)
 
-        self.stats[Stats.MANA] = mana
+        self.stat[Stats.MANA] = mana
+        self.set_stats()
+        self.mana = self.stat[Stats.MANA].stat
+
 
 class Templar(Player):
     type = 'Templar'
     desc = 'Posesses powerful attacks and shielding abilities'
     ability_info = 'Notable skills:\n- All attacks ignore some DEF and delays the enemy'
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
 
 class Necromancer(Magic):
+    def __init__(self, name=str, level=int, health=Stat, mana=Stat, attack=Stat, defence=Stat, speed=Stat, critrate=Stat, critdmg=Stat, stamina=Stat, item_space=int, weapon_space=int, currency=int, xp=int, xpmax=int):
+        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg, stamina, item_space, weapon_space, currency, xp, xpmax)
     type = 'Necromancer'
     desc = "Summons minions to aid in battles"
-    ability_info = 'Notable skills:\n- Can summon monsters half i\'ts level'
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
+    ability_info = 'Notable skills:, Can summon monsters half i\'ts level'
+        
 
 class Psion(Player):
     type = 'Psion'
     desc = 'Has the power of mind control'
-    ability_info = 'Notable skills:\n- High speed\n- Life steal\n Can make decoys of itself'
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
+    ability_info = 'Notable skills: High speed, Life steal, Can make decoys of itself'
 
-class MalisonMage(Magic):
-    type = 'Malison Mage'
+class Blightbringer(Magic):
+    def __init__(self, name=str, level=int, health=Stat, mana=Stat, attack=Stat, defence=Stat, speed=Stat, critrate=Stat, critdmg=Stat, stamina=Stat, item_space=int, weapon_space=int, currency=int, xp=int, xpmax=int):
+        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg, stamina, item_space, weapon_space, currency, xp, xpmax)
+    type = 'Mage'
     desc = "Access to powerful spells, but has low speed"
-    ability_info = 'Notable skills:\n- Apply debuffs to enemies'
-    def __init__(self, name, level, health, mana, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, mana, attack, defence, speed, critrate, critdmg)
+    ability_info = 'Notable skills: Apply debuffs to enemies'
+
+    def create_weapon(self, rarity: int, name: str | None):
+        """
+        rarity = 1 / 2 / 3
+        Choosing any other number will cause the weapon to be of random rarity
+        """
+
+        
+        if name is None:
+            ...
+
+        weapon = weapons.Weapon(ItemTypes.WEAPON)
 
 
-classes = [MalisonMage, Necromancer, Psion, Templar]
+class SetClasses:
+     def mage() -> list[str]:
+        new_player = Blightbringer(name=None, level=1, health=Stat(base=450, scaleing=200, base_scaleing=16), mana=Stat(base=50, scaleing=50, base_scaleing=5), attack=Stat(base=250, scaleing=100, base_scaleing=14), defence=Stat(base=300, scaleing=150, base_scaleing=15), speed=Stat(base=97, scaleing=1, base_scaleing=0.3), critrate=Stat(base=9, scaleing=1, base_scaleing=0.5), critdmg=Stat(base=55, scaleing=5, base_scaleing=5), stamina=Stat(base=450, scaleing=150, base_scaleing=7), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        return new_player
+     
+     def templar() -> list[str]:
+        new_player = Templar(name=None, level=1, health=Stat(base=650, scaleing=250, base_scaleing=20), attack=Stat(base=270, scaleing=70, base_scaleing=16), defence=Stat(base=200, scaleing=80, base_scaleing=14), speed=Stat(base=95, scaleing=1, base_scaleing=0.35), critrate=Stat(base=13, scaleing=2, base_scaleing=0.5), critdmg=Stat(base=45, scaleing=5, base_scaleing=3.8), stamina=Stat(base=99, scaleing=1, base_scaleing=11), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        return new_player
+     
+     def psion() -> list[str]:
+        new_player = Psion(name=None, level=1, health=Stat(base=450, scaleing=180, base_scaleing=14), attack=Stat(base=300, scaleing=80, base_scaleing=15), defence=Stat(base=1000, scaleing=150, base_scaleing=15), speed=Stat(base=108, scaleing=2, base_scaleing=0.45), critrate=Stat(base=0, scaleing=5, base_scaleing=0.33), critdmg=Stat(base=42, scaleing=8, base_scaleing=2), stamina=Stat(base=174, scaleing=6, base_scaleing=8), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        return new_player
+     
+     def necromancer() -> list[str]:
+        new_player = Necromancer(name=None, level=1, health=Stat(base=500, scaleing=180, base_scaleing=15), mana=Stat(base=40, scaleing=25, base_scaleing=5), attack=Stat(base=200, scaleing=50, base_scaleing=10), defence=Stat(base=450, scaleing=150, base_scaleing=15), speed=Stat(base=99, scaleing=1, base_scaleing=0.4), critrate=Stat(base=5, scaleing=1, base_scaleing=0.8), critdmg=Stat(base=45, scaleing=5, base_scaleing=1), stamina=Stat(base=57, scaleing=3, base_scaleing=5), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        return new_player
+
+classes = [Blightbringer, Necromancer, Psion, Templar]
+

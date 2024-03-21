@@ -3,16 +3,15 @@
 #
 #
 
-import effects
-from entity import Entity
-from entity import Stats
+import battlefield.effects
+from battlefield.entity import Entity
+from battlefield.entity import Stats
+from battlefield.entity import Stat
 import random
 
 class mob(Entity):
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
-
-
         self.maxlv = 100
         self.loot = []
 
@@ -25,7 +24,7 @@ class mob(Entity):
 class Creeper(mob):
     def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg, fuse):
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
-        self.stats[Stats.FUSE] = fuse
+        self.stat[Stats.FUSE] = fuse
 
     def attack_options(self, team):
         self.stats[Stats.FUSE] -=1
@@ -61,3 +60,4 @@ class Wizard(mob):
     def attack_options(self, team):
 
             self.attack(random.choice(team), 1, 0),
+

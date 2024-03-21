@@ -3,46 +3,105 @@ import random
 import account
 from battlefield import iterate_game
 from account import Global
-from battlefield.player import Player
+#import battlefield.player as player
+from battlefield.player import SetClasses
+from datetime import timedelta
+from battlefield.entity import Stat
 
 from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
-app.secret_key = "Wu7&epk#@£@]9ee9009o340£$]}@}OI=)=!"
-
-player = Player('Magus Supremus', 4, 100, 100, 100, 100, 100, 5, 50, 5, 5, 50, 0, 100)
-player.states = [iterate_game.Game.State.IDLE]
-
-test = {"test": "wow"}
-
-class Glob:   
-    texty = []
+app.secret_key = " 'lag en enkel app' :)Åæ "
+app.permanent_session_lifetime = timedelta(hours=32)
 
 
-accounts = []
-
-
+#
 @app.route('/uid/')
 def uid():
-    session["uid"] = Global.assign_uid()
-    redirect(url_for("base"))
+    if not "uid" in session:
+        session.permanent = True    
+        session["uid"] = Global.assign_uid()
+        Global.create_account(session["uid"])
 
-
-@app.route('/ca') # Currently test, supposed to create account
-def join():
-    
-    new_account = account.Account(None)
-    accounts.append(new_account)
-    return new_account.print_info()
-
-@app.route('/main-test') # Test site, will probably not be used
-def main_test():
-
-    return render_template('main.html')
+    return redirect(url_for("base"))
 
 
 @app.route('/')
 def base():
-    return render_template('text.html', text_box = Glob.texty)
+    
+    if "uid" in session:  
+        if len(Global.accounts) < 1:
+            session.clear()
+            return redirect(url_for("uid"))
+
+        for i in Global.accounts:
+            if i.uid == int(session["uid"]):
+                user = i
+
+        try:
+            if user == '':
+                pass
+        except:
+            session.clear()
+            return redirect(url_for("uid"))
+
+        stats = []
+        if user.player == None or user.name == None:
+            stats.append(f'- - -')
+        else:
+            for i in user.player.list_stats():
+                stats.append(i)
+        return render_template('main.html', text_box = user.texty, chat_box = Global.chat, player_stats = stats)
+    else:
+        return redirect(url_for("uid"))
+
+
+@app.route('/', methods=['POST'])
+def base_post():
+    game_output: list[str] = [f'', f'', f'/ - - > -']
+
+    if len(Global.accounts) < 1:
+        session.clear()
+        return redirect(url_for("uid"))
+
+    for i in Global.accounts:
+        if i.uid == session["uid"]:
+            user = i
+            the_player = user.player
+
+    print(f'Action detected from player with UID: {session["uid"]}')
+
+    text = request.form['text']
+    input = text.upper()
+    previous_text = user.texty
+
+    if len(input) > 0:
+        if input == '/CLEAR':
+            previous_text = ['CLEARED ALL TEXT...']
+        #input = random.choice(random_text)
+        
+        if user.name == None:
+            if the_player == None:
+                game_output.extend(account.Account.choose_player_class_iteration(user, input))
+
+            if not user.player == None:
+                game_output.extend(account.Account.set_name(user, input))
+        else:
+            game_output.extend(iterate_game.Game.iterate(the_player, input))
+
+
+        for i in game_output:
+            previous_text.append(i)
+
+        while len(user.texty) > 23:
+            user.texty.remove(user.texty[0])
+
+        user.texty = previous_text
+
+
+    text = []
+    return redirect(url_for("base"))
+    
+
 
 @app.route('/', methods=['CHAT']) # Unfiltered chat
 def update_chat():
@@ -54,33 +113,10 @@ def update_chat():
     return render_template('text.html')
 
 
-@app.route('/', methods=['POST'])
-def base_post():
-    
-    text = request.form['text']
-    new_text = text.upper()
-    prev_text = Glob.texty
-
-    if len(new_text) > 0:
-        if new_text == '/CLEAR':
-            prev_text = ['CLEARED ALL TEXT...']
-        #new_text = random.choice(random_text)
-
-        else:
-            game_output: list[str] = [f'', f'^^^^^^^^^^^^^^^^^^^^^^^^^^']
-            game_output.extend(iterate_game.Game.iterate(player, new_text))
-
-            for i in game_output:
-                prev_text.append(i)
-
-            while len(Glob.texty) > 29:
-                Glob.texty.remove(Glob.texty[0])
-
-        Glob.texty = prev_text
-    return render_template('text.html', text_box = Glob.texty)
-    
-
 
 if __name__=='__main__': 
    app.debug = True
    app.run()
+
+
+

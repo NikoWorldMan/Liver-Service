@@ -1,14 +1,11 @@
 #
 #
 #
+from battlefield.item import ItemTypes
 
 class Weapon:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, type: ItemTypes) -> None:
+        self.type = type
 
-    def basic(self):
+    def abilities(self):
         ...
-
-class Templar(Weapon):
-    def __init__(self) -> None:
-        super().__init__()
