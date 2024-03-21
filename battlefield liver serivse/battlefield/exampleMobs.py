@@ -4,20 +4,10 @@
 #
 
 import battlefield.effects
-from battlefield.entity import Entity
+from battlefield.mobs import mob
 from battlefield.entity import Stats
 from battlefield.entity import Stat
 import random
-
-class mob(Entity):
-    def __init__(self, name, level, health, attack, defence, speed, critrate, critdmg):
-        super().__init__(name, level, health, attack, defence, speed, critrate, critdmg)
-        self.maxlv = 100
-        self.loot = []
-
-
-    def attack_options(self, team):
-        return super().attack_options(team)
 
 
 
@@ -44,6 +34,6 @@ class Example(mob):
 
         target = random.choice(team)
         #
-
+        self.attack(target, 1, 0, 0) # DEFENCE ignore: 1 = 100% Defence ignore | 0.5 = 50% Defence igonre ect..
 
 

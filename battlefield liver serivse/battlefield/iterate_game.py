@@ -311,21 +311,27 @@ class Game:
         state = player.states[-1]
         cmd = str(cmd).lower()
 
-        if state == Game.State.IDLE:
-            output.extend(Game.idle_state(player, cmd))
-        elif state == Game.State.SHOP:
-            output.extend(Game.shop_state(player, cmd))
-        elif state == Game.State.INVENTORY:
-            output.extend(Game.inventory_state(player, cmd))
-        elif state == Game.State.DUNGEON:
-            output.extend(Game.dungeon_state(player, cmd))
-        elif state == Game.State.FIGHT:
-            output.extend(Game.fight_state(player, cmd))
-        elif state == Game.State.BATTLEING:
-            output.extend(Game.battle_state(player, cmd))
-        else:
-            #self.states.append(Game.State.IDLE)
-            output += [f'{cmd} what? how did you get here.']
+        if cmd == 'hacc':
+            player.level += 1
+        elif cmd == 'hacc10':
+            player.level += 10
+
+        else:        
+            if state == Game.State.IDLE:
+                output.extend(Game.idle_state(player, cmd))
+            elif state == Game.State.SHOP:
+                output.extend(Game.shop_state(player, cmd))
+            elif state == Game.State.INVENTORY:
+                output.extend(Game.inventory_state(player, cmd))
+            elif state == Game.State.DUNGEON:
+                output.extend(Game.dungeon_state(player, cmd))
+            elif state == Game.State.FIGHT:
+                output.extend(Game.fight_state(player, cmd))
+            elif state == Game.State.BATTLEING:
+                output.extend(Game.battle_state(player, cmd))
+            else:
+                #self.states.append(Game.State.IDLE)
+                output += [f'{cmd} what? how did you get here.']
         
         return output
     

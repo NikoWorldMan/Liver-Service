@@ -3,7 +3,7 @@ import random
 import account
 from battlefield import iterate_game
 from account import Global
-import battlefield.player as player
+#import battlefield.player as player
 from battlefield.player import SetClasses
 from datetime import timedelta
 from battlefield.entity import Stat
@@ -37,6 +37,13 @@ def base():
             if i.uid == int(session["uid"]):
                 user = i
 
+        try:
+            if user == '':
+                pass
+        except:
+            session.clear()
+            return redirect(url_for("uid"))
+
         stats = []
         if user.player == None or user.name == None:
             stats.append(f'- - -')
@@ -60,9 +67,6 @@ def base_post():
         if i.uid == session["uid"]:
             user = i
             the_player = user.player
-        else:
-            session.clear()
-            return redirect(url_for("uid"))
 
     print(f'Action detected from player with UID: {session["uid"]}')
 
