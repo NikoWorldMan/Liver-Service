@@ -54,7 +54,7 @@ color: azure;
 
 .stats{
 text-align: left;
-margin-left: 1em;
+margin-left: 0.1em;
 position: static;
 }
 .chatbox {
@@ -237,7 +237,7 @@ color: azure;
     }
 
     .forms{
-      margin-top: 49.2em;
+      margin-top: 49.5em;
       margin-inline-end: 200%;
       position: absolute;
       top: 0;
