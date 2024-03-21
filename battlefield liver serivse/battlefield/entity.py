@@ -114,8 +114,8 @@ class Entity: # Default attributes all entities possess
     def crit_dmg(self):
         return ( self.stat[Stats.CRITDMG].stat / 100 )
     
-    def damage_reduction(self, attacker, def_mult: float) -> float:
-        defence = self.stat[Stats.DEFENCE].stat * def_mult
+    def damage_reduction(self, attacker, def_ignore: float) -> float:
+        defence = self.stat[Stats.DEFENCE].stat - self.stat[Stats.DEFENCE].stat * def_ignore
         level_dif: int = 0
         if attacker.level > self.level:                                                   
             levelDiff = attacker.level - self.level
@@ -133,7 +133,7 @@ class Entity: # Default attributes all entities possess
         else:
             pass
 
-    def attack(self, target, mult, add, def_ignore: float):
+    def attack(self, target, mult, add, def_ignore: float | None):
         damage_variance = random.randrange(98, 102)/100
         output: list[int] = []
         crit: int = 1

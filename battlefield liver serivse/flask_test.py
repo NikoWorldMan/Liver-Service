@@ -3,7 +3,7 @@ import random
 import account
 from battlefield import iterate_game
 from account import Global
-import battlefield.player as player
+#import battlefield.player as player
 from battlefield.player import SetClasses
 from datetime import timedelta
 from battlefield.entity import Stat
@@ -36,7 +36,7 @@ def base():
         for i in Global.accounts:
             if i.uid == int(session["uid"]):
                 user = i
-                
+
         try:
             if user == '':
                 pass
