@@ -6,6 +6,7 @@
 import battlefield.effects
 from battlefield.entity import Entity
 from battlefield.entity import Stats
+from battlefield.entity import Stat
 import random
 
 class mob(Entity):
@@ -59,3 +60,4 @@ class Wizard(mob):
     def attack_options(self, team):
 
             self.attack(random.choice(team), 1, 0),
+
