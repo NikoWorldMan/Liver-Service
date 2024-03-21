@@ -5,6 +5,7 @@
 
 from battlefield.player import SetClasses
 import battlefield.player as player
+from battlefield.player import Player
 
 class States:
     PLAYER = 0
@@ -14,12 +15,13 @@ class Account:
     def __init__(self, uid: int) -> None:
 
         self.uid = uid
-        self.player = None
+        self.player: Player = None
         self.name = None
         self.input = ''
         self.state = None
 
-        self.texty = ['Welcome, new player!', '', f'Please choose your class', f'1. Templar', f'2. Mage', f'3. Psion', f'4. Necromancer']
+        self.texty = ['Welcome, new player!', '']
+        self.texty.extend(self.choose_player_class_iteration(''))
 
     def assign_player(self, player):
         self.player = player

@@ -37,7 +37,13 @@ def base():
             if i.uid == int(session["uid"]):
                 user = i
 
-        return render_template('main.html', text_box = user.texty, chat_box = Global.chat, player_stats = [f'HP: 10', f'ATK: 3', f'STM: 8'])
+        stats = []
+        if user.player == None or user.name == None:
+            stats.append(f'- - -')
+        else:
+            for i in user.player.list_stats():
+                stats.append(i)
+        return render_template('main.html', text_box = user.texty, chat_box = Global.chat, player_stats = stats)
     else:
         return redirect(url_for("uid"))
 

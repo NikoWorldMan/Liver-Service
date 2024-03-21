@@ -42,7 +42,7 @@ grid-column: 3;
 grid-row: 1 / 3;
 border: rgb(73, 182, 182);
 border-style: double;
-min-width: 10em;
+margin-left: -25em;
 }
 
 .statusbox{
@@ -50,11 +50,13 @@ grid-column: 3;
 grid-row: 3/5 ;
 border: rgb(73, 182, 182);
 border-style: double;
-color: azure;
+color: wheat;
+margin-left: -25em;
 }
 
 .stats{
 text-align: left;
+font-size: large;
 }
 
 .chatbox {
@@ -62,8 +64,11 @@ grid-column: 3;
 grid-row: 5/9 ;
 border: rgb(73, 182, 182);
 border-style: double;
-color: azure;
+color: wheat;
+margin-left: -25em;
+margin-bottom: 1.3em;
 }
+
         
 @keyframes flicker {
     0% {
