@@ -6,7 +6,6 @@
 import battlefield.effects
 from battlefield.mobs import mob
 from battlefield.entity import Stats
-from battlefield.entity import Stat
 import random
 
 
