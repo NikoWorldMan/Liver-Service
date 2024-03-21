@@ -54,8 +54,6 @@ color: azure;
 
 .stats{
 text-align: left;
-margin-left: 0.1em;
-position: static;
 }
 .chatbox {
 grid-column: 3;
@@ -255,9 +253,8 @@ color: azure;
      }
     
      input:not(:focus){
-      background-color: rgb(73, 182, 182);
       outline: none;
-      border: none;
+      border-style:dotted;
      }
 
     .written{
