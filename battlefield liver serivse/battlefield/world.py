@@ -2,14 +2,12 @@
 #
 
 import random
-import player
-import mobs
+
 import time
-import entity
 
 class World:
     turn_cycle = 10000
-
+    fight_id = -1
 
     class Shop:
         def __init__(self, contents) -> None:
@@ -19,8 +17,62 @@ class World:
             pass
 
 
-    def start_game():
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    def start_game():
         thePlayer = player.Player(input(f"Name your character! ").upper(), 1, 6000, 2000, 1500, 3000, 100, 10, 50, 10, 5, 10, 0, 100, None).clone()
         thePlayer.list_stats()
         input()
@@ -54,14 +106,12 @@ class World:
             else:
                 print(action,"is not an option")
 
-
     def battle_info(self):
         self.set_stats()
         self.turn_value = 100
         if "SPD" in self.stats:
             self.turn_value = self.get_action_value(World.turn_cycle)
         self.display_health()
-
 
     def battle(team_1, team_2):
 
@@ -108,12 +158,3 @@ class World:
 
         print("team 1",team_1, "team 2 \n",team_2)
         print()
-
-
-creep = mobs.Creeper("Crepr", 18, 3000, 500, 400, 14, 0, 0, 4)
-
-zomb = mobs.Zombie("Zmbie", 17, 5000, 600, 400, 7, 60, 120)
-
-the_player= player.Player("Sturl", 20, 5000, 200, 90, 1000, 9, 100, 400, 10, 10, 10, 0, 100)
-
-World.battle([zomb.clone()], [creep.clone()])

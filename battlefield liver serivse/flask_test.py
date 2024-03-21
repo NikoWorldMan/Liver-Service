@@ -3,88 +3,94 @@ import random
 import account
 from battlefield import iterate_game
 from account import Global
-from battlefield.player import Player
+import battlefield.player as player
+from battlefield.player import SetClasses
 from datetime import timedelta
+from battlefield.entity import Stat
 
 from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
-app.secret_key = "whatthefucisaflask"
-app.permanent_session_lifetime = timedelta(days=2)
-
-player = Player('Magus Supremus', 4, 100, 100, 100, 100, 100, 5, 50, 15, 5, 500, 0, 100)
-player.states = [iterate_game.Game.State.IDLE]
-
-test = {"test": "wow"}
-
-class Glob:   
-    texty = []
+app.secret_key = " 'lag en enkel app' :)Åæ "
+app.permanent_session_lifetime = timedelta(hours=32)
 
 
-accounts = []
-
-@app.route('/sus/')
-def sus():
-    session.pop("uid", None)
-    return redirect(url_for("base"))
-
+#
 @app.route('/uid/')
 def uid():
     if not "uid" in session:
-        session.permanent = True
+        session.permanent = True    
         session["uid"] = Global.assign_uid()
+        Global.create_account(session["uid"])
+
     return redirect(url_for("base"))
 
 
-@app.route('/ca') # Currently test, supposed to create account
-def join():
-    
-    new_account = account.Account(None)
-    accounts.append(new_account)
-    return new_account.print_info()
-
-@app.route('/main-test') # Test site, will probably not be used
-def main_test():
-
-    return render_template('main.html')
-
 @app.route('/')
 def base():
+    
     if "uid" in session:
-        return render_template('text.html', text_box = Glob.texty)
+        
+        if len(Global.accounts) < 1:
+            session.clear()
+            return redirect(url_for("uid"))
+
+        for i in Global.accounts:
+            if i.uid == int(session["uid"]):
+                user = i
+
+        return render_template('text.html', text_box = user.texty, chat_box = account.Global.chat, player_stats = None)
     else:
         return redirect(url_for("uid"))
 
 
-
 @app.route('/', methods=['POST'])
 def base_post():
+    game_output: list[str] = [f'', f'/ - - > -']
 
-    print(session["uid"])
-    
-    text = request.form['text']
-    new_text = text.upper()
-    prev_text = Glob.texty
+    if len(Global.accounts) < 1:
+        session.clear()
+        return redirect(url_for("uid"))
 
-    if len(new_text) > 0:
-        if new_text == '/CLEAR':
-            prev_text = ['CLEARED ALL TEXT...']
-        #new_text = random.choice(random_text)
-
+    for i in Global.accounts:
+        if i.uid == session["uid"]:
+            user = i
+            the_player = user.player
         else:
-            game_output: list[str] = [f'', f'', f'/ - - > -']
-            game_output.extend(iterate_game.Game.iterate(player, new_text))
+            session.clear()
+            return redirect(url_for("uid"))
 
-            for i in game_output:
-                prev_text.append(i)
+    print(f'Action detected from player with UID: {session["uid"]}')
 
-            while len(Glob.texty) > 24:
-                Glob.texty.remove(Glob.texty[0])
+    text = request.form['text']
+    input = text.upper()
+    previous_text = user.texty
 
-        Glob.texty = prev_text
+    if len(input) > 0:
+        if input == '/CLEAR':
+            previous_text = ['CLEARED ALL TEXT...']
+        #input = random.choice(random_text)
+        
+        if user.name == None:
+            if the_player == None:
+                game_output.extend(account.Account.choose_player_class_iteration(user, input))
+
+            if not user.player == None:
+                game_output.extend(account.Account.set_name(user, input))
+        else:
+            game_output.extend(iterate_game.Game.iterate(the_player, input))
+
+
+        for i in game_output:
+            previous_text.append(i)
+
+        while len(user.texty) > 25:
+            user.texty.remove(user.texty[0])
+
+        user.texty = previous_text
 
 
     text = []
-    return render_template('text.html', text_box = Glob.texty)
+    return redirect(url_for("base"))
     
 
 

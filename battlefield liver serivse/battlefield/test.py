@@ -1,7 +1,10 @@
 
 defence = 20000
-level_dif = 4
+level_dif = 21
 u = 0
+
+damage = 100
+
 
 
 while not u == "c":
@@ -11,9 +14,9 @@ while not u == "c":
     inc = input("int: ")
 
     if len(inc) > 0:
-        defence += int(inc)
+        defence = int(inc)
 
-    mult = 1-(defence/(defence+4000+1500*level_dif))
+    mult = 1 - ((1 + defence) / (defence + 500 + (2 ** level_dif) + 66 * level_dif ))
 
 
     print()
@@ -24,3 +27,47 @@ while not u == "c":
     print("-")
     print(f"Damage reduction: {int((1-mult) * 100)}%")
     print()
+
+    print(f'Took {int(damage*mult)} damage')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
