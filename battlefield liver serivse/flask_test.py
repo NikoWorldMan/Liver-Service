@@ -37,7 +37,7 @@ def base():
             if i.uid == int(session["uid"]):
                 user = i
 
-        return render_template('text.html', text_box = user.texty, chat_box = Global.chat, player_stats = None)
+        return render_template('main.html', text_box = user.texty, chat_box = Global.chat, player_stats = [f'HP: 10', f'ATK: 3', f'STM: 8'])
     else:
         return redirect(url_for("uid"))
 
