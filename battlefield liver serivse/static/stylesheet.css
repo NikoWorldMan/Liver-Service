@@ -19,18 +19,18 @@ color: rgb(73, 182, 182);;
 }
 
 .logo {
-grid-column: 1/2;
+grid-column: 1;
 grid-row: 1;
 color:rgb(73, 182, 182);
 }
 
 .wrapper {
 display: grid;
-grid-template-columns: repeat(3, 1fr);
-gap: 10px;
+grid-template-columns: repeat(2, 1fr);
+gap: 0.2em;
 grid-auto-rows: minmax(100px, auto);
-column-gap: 3px;
-row-gap: 3px;
+column-gap: 0.2em;
+row-gap: 0.2em;
 }
 
 .one {
@@ -54,7 +54,7 @@ color: azure;
 
 .stats{
 text-align: left;
-margin-left: 30px;
+margin-left: 2em;
 }
 .chatbox {
 grid-column: 3;
@@ -237,9 +237,7 @@ color: azure;
     }
 
     .forms{
-      position: fixed;
-      margin-top: 666px;
-      left: -16px;
+      margin-top: 48.2em;
       margin-inline-end: 200%;
       position: absolute;
       top: 0;
@@ -251,14 +249,13 @@ color: azure;
       border: none;
       outline: none;
       font-size: medium;
-      max-height: 15px;
-      margin: auto;
+      max-height: 15em;
       background-color: rgb(4, 4, 49);
-      margin-left: 45px;
+      margin-left: 1.5em;
      }
     
      input:not(:focus){
-      background-color: aqua;
+      background-color: rgb(73, 182, 182);
       outline: none;
       border: none;
      }
