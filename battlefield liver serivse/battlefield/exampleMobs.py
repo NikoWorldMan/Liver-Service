@@ -17,9 +17,9 @@ class Example(mob):
         
         super().__init__(name, level, health, attack, defence, speed, critrate, critdmg) 
         #Returns the stats, Any special stats need to be defined separately like so:
-        #
+        
         #self.fuse = fuse
-        #
+        
         #To add scaling based on level:
         #self.stat[Stats.FUSE] = fuse
 
@@ -30,10 +30,14 @@ class Example(mob):
 
 
     def attack_options(self, team):
-    #
+    #What options the mob has to attack with.
 
         target = random.choice(team)
+        #Self enclosed variable for who the attack is targeting.
+
+        self.attack(target, 1, 0, 0)
         #
-        self.attack(target, 1, 0, 0) # DEFENCE ignore: 1 = 100% Defence ignore | 0.5 = 50% Defence igonre ect..
+        #
+        #DEFENCE ignore: 1 = 100% Defence ignore | 0.5 = 50% Defence igonre ect..
 
 
