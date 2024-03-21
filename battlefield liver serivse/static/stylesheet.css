@@ -31,6 +31,7 @@ gap: 0.2em;
 grid-auto-rows: minmax(100px, auto);
 column-gap: 0.2em;
 row-gap: 0.2em;
+padding-top: 1;
 }
 
 .one {
@@ -54,7 +55,7 @@ color: azure;
 
 .stats{
 text-align: left;
-margin-left: 2em;
+margin-left: 1em;
 }
 .chatbox {
 grid-column: 3;
@@ -252,6 +253,7 @@ color: azure;
       max-height: 15em;
       background-color: rgb(4, 4, 49);
       margin-left: 1.5em;
+      margin-bottom: 1em;
      }
     
      input:not(:focus){
@@ -261,6 +263,6 @@ color: azure;
      }
 
     .written{
-    margin-left: 25px;
+    margin-left: 1.5em;
      }
  
