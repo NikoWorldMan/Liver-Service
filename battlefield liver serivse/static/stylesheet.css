@@ -54,7 +54,6 @@ color: azure;
 
 .stats{
 text-align: left;
-margin-left: 1em;
 }
 .chatbox {
 grid-column: 3;
@@ -64,7 +63,6 @@ border-style: double;
 color: azure;
 }
         
-
 @keyframes flicker {
     0% {
       opacity: 0.27861;
@@ -237,7 +235,7 @@ color: azure;
     }
 
     .forms{
-      margin-top: 48.2em;
+      margin-top: 49.5em;
       margin-inline-end: 200%;
       position: absolute;
       top: 0;
@@ -252,13 +250,11 @@ color: azure;
       max-height: 15em;
       background-color: rgb(4, 4, 49);
       margin-left: 1.5em;
-      margin-bottom: 1em;
      }
     
      input:not(:focus){
-      background-color: rgb(73, 182, 182);
       outline: none;
-      border: none;
+      border-style:dotted;
      }
 
     .written{
