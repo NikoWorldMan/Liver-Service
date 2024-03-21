@@ -36,6 +36,13 @@ def base():
         for i in Global.accounts:
             if i.uid == int(session["uid"]):
                 user = i
+                
+        try:
+            if user == '':
+                pass
+        except:
+            session.clear()
+            return redirect(url_for("uid"))
 
         stats = []
         if user.player == None or user.name == None:
@@ -60,9 +67,6 @@ def base_post():
         if i.uid == session["uid"]:
             user = i
             the_player = user.player
-        else:
-            session.clear()
-            return redirect(url_for("uid"))
 
     print(f'Action detected from player with UID: {session["uid"]}')
 
