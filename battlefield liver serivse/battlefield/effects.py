@@ -11,7 +11,7 @@ The "ACT" Is always active and provides a passive effect
 The
 """
 
-from entity import Stats
+from battlefield.entity import Stats
 
 class Triggers:
     ON_DAMAGE_TAKEN = "Take Damage"
@@ -26,7 +26,7 @@ class EffectTypes:
             self.triggers = triggers
 
         def trigger(self, target):
-            target.change_health(self.owner.stat[Stats.ATTACK] * self.strength)
+            target.change_health(self.owner.stat[Stats.ATTACK].stat * self.strength)
 
     class STAT:
         def __init__(self, stats: Stats, mult) -> None:
