@@ -20,15 +20,16 @@
     grid-row: 1;
     grid-column: 1/2;
     height: 98vh;
-    border-right: 100em;
-
+    row-gap: 1px;
+    column-gap: 1px;
   }
   .leftbox{
     display: grid;
     grid-row: 1;
     grid-column: 1;
-    row-gap: 1px;
-    column-gap: 1px;
+    row-gap: 0.5px;
+    column-gap: 0.5px;
+    width: 80em;
   }
   
   .logo{
