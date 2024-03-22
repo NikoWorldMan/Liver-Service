@@ -2,8 +2,9 @@ site_name: (-Battlefield by liver service-)
 
 theme:
   name: material
-  
-
+    features:
+    - navigation.tabs
+    
 
 
   markdown_extensions:
