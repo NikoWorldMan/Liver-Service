@@ -4,7 +4,8 @@ theme:
   name: material
   features:
     - content.code.copy
-    - navigation.tabs.sticky
+    - navigation.tabs
+    - mavigation.tabs.sticky
 
 
 
