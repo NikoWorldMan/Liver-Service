@@ -1,13 +1,12 @@
 site_name: (-Liver Service, Info pages-)
 site_url: https://exampleName.com/
-nav:
-- Dev: index.md
-- Page 1: Battlefield manual.md
-- Page 2: Battlefield webpage.md
+
 
 
 theme:
   name: material
+  Dev: index.md
+  Page 1: Battlefield manual.md
   features:
     - content.code.copy
     - navigation.tabs.sticky
