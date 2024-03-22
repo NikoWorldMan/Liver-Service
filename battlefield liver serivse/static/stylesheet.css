@@ -2,16 +2,17 @@
 font-family: 'Courier New', Courier, monospace;
 }
 
+h1{
+  margin: auto;
+  background-color: rgb(73, 182, 182);
+  font-size: large;
+  color: rgb(4, 4, 49);
+}
+
 body{
     height: 100%;
     background-color: rgb(4, 4, 49);
     }
-h1{
-    margin: auto;
-    background-color: rgb(73, 182, 182);
-    font-size: large;
-    color: rgb(4, 4, 49);
-}
 
 p{
 color: rgb(73, 182, 182);;
@@ -237,30 +238,62 @@ margin-bottom: 1.3em;
     color: wheat;
     }
 
-    .forms{
-      margin-top: 49.5em;
-      margin-inline-end: 200%;
-      position: absolute;
-      top: 0;
-      font-size: small;
-    }
+.console{
+  max-height: 10em;
+  margin-top: -18em;
+}
+.inputbox{
+  color: rgb(73, 182, 182);
+  margin-top: 1em;
+}
 
-    input{ 
-      color: rgb(73, 182, 182);
-      border: none;
-      outline: none;
-      font-size: medium;
-      max-height: 15em;
-      background-color: rgb(4, 4, 49);
-      margin-left: 1.5em;
-     }
-    
-     input:not(:focus){
-      outline: none;
-      border-style:dotted;
-     }
+  .forms{
+    position: absolute;
+    font-size: small;
+    margin: auto;
+}
 
-    .written{
+  input{ 
+    color: rgb(73, 182, 182);
+    border: none;
+    outline: none;
+    font-size: medium;
+    max-height: 15em;
+    background-color: rgb(4, 4, 49);
     margin-left: 1.5em;
-     }
- 
+    margin-top: 0;
+}
+  
+   input:not(:focus){
+    outline: none;
+    border-style:dotted;
+}
+
+  .written{
+  margin-left: 1.5em;
+}
+/*EVERYTHING ABOVE IS ON THE LEFT SIDE */
+
+.rightbox{
+  row-gap: 1px;
+  column-gap: 1px;
+  display: grid;
+  grid-row:1;
+  grid-column: 2;
+}
+
+.pfp-box{
+  border-style: double;
+  color: rgb(73, 182, 182);
+}
+
+.statusbox{
+  border-style: double;
+  color: rgb(73, 182, 182);
+}
+
+.chatbox{
+  border-style: double;
+  color: rgb(73, 182, 182);
+}
+/*EVERYTHING ABOVE IS ON THE RIGHT SIDE */
