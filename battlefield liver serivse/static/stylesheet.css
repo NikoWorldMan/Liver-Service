@@ -269,6 +269,7 @@
     grid-column: 1;
     border-style: double;
     color: rgb(73, 182, 182);
+    border-bottom: 1000em;
   }
 
   .stats{
