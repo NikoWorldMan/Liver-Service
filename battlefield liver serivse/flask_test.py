@@ -75,6 +75,10 @@ def base_post():
     previous_text = user.texty
 
     if len(input) > 0:
+        if input == '/UID':
+            session.clear()
+            return redirect(url_for("uid"))
+
         if input == '/CLEAR':
             previous_text = ['CLEARED ALL TEXT...']
         #input = random.choice(random_text)
