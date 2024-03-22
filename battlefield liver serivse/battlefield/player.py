@@ -166,19 +166,19 @@ class Blightbringer(Magic):
 
 class SetClasses:
      def mage() -> list[str]:
-        new_player = Blightbringer(name=None, level=1, health=Stat(base=450, scaleing=200, base_scaleing=16), mana=Stat(base=50, scaleing=50, base_scaleing=5), attack=Stat(base=250, scaleing=100, base_scaleing=14), defence=Stat(base=300, scaleing=150, base_scaleing=15), speed=Stat(base=97, scaleing=1, base_scaleing=0.3), critrate=Stat(base=9, scaleing=1, base_scaleing=0.5), critdmg=Stat(base=55, scaleing=5, base_scaleing=5), stamina=Stat(base=450, scaleing=150, base_scaleing=7), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Blightbringer(name=None, level=80, health=Stat(base=450, scaleing=200, base_scaleing=16), mana=Stat(base=50, scaleing=50, base_scaleing=1), attack=Stat(base=250, scaleing=70, base_scaleing=10), defence=Stat(base=310, scaleing=140, base_scaleing=12), speed=Stat(base=89, scaleing=1.2, base_scaleing=0.09), critrate=Stat(base=9, scaleing=1, base_scaleing=0.1538), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=1), stamina=Stat(base=115, scaleing=3, base_scaleing=3), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def templar() -> list[str]:
-        new_player = Templar(name=None, level=1, health=Stat(base=650, scaleing=250, base_scaleing=20), attack=Stat(base=270, scaleing=70, base_scaleing=16), defence=Stat(base=200, scaleing=80, base_scaleing=14), speed=Stat(base=95, scaleing=1, base_scaleing=0.35), critrate=Stat(base=13, scaleing=2, base_scaleing=0.5), critdmg=Stat(base=45, scaleing=5, base_scaleing=3.8), stamina=Stat(base=99, scaleing=1, base_scaleing=11), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Templar(name=None, level=80, health=Stat(base=650, scaleing=250, base_scaleing=20.77), attack=Stat(base=270, scaleing=50, base_scaleing=11), defence=Stat(base=200, scaleing=80, base_scaleing=14), speed=Stat(base=94, scaleing=1.5, base_scaleing=0.19), critrate=Stat(base=13, scaleing=2, base_scaleing=0.25), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=0.3), stamina=Stat(base=99, scaleing=1, base_scaleing=5), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def psion() -> list[str]:
-        new_player = Psion(name=None, level=1, health=Stat(base=450, scaleing=180, base_scaleing=14), attack=Stat(base=300, scaleing=80, base_scaleing=15), defence=Stat(base=1000, scaleing=150, base_scaleing=15), speed=Stat(base=108, scaleing=2, base_scaleing=0.45), critrate=Stat(base=0, scaleing=5, base_scaleing=0.33), critdmg=Stat(base=42, scaleing=8, base_scaleing=2), stamina=Stat(base=174, scaleing=6, base_scaleing=8), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Psion(name=None, level=80, health=Stat(base=450, scaleing=180, base_scaleing=14), attack=Stat(base=245, scaleing=55, base_scaleing=9), defence=Stat(base=1150, scaleing=150, base_scaleing=16), speed=Stat(base=103, scaleing=2, base_scaleing=0.25), critrate=Stat(base=5.8, scaleing=2.2, base_scaleing=0.0354), critdmg=Stat(base=46.5, scaleing=3.5, base_scaleing=0.25), stamina=Stat(base=154, scaleing=6, base_scaleing=4), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def necromancer() -> list[str]:
-        new_player = Necromancer(name=None, level=1, health=Stat(base=500, scaleing=180, base_scaleing=15), mana=Stat(base=40, scaleing=25, base_scaleing=5), attack=Stat(base=200, scaleing=50, base_scaleing=10), defence=Stat(base=450, scaleing=150, base_scaleing=15), speed=Stat(base=99, scaleing=1, base_scaleing=0.4), critrate=Stat(base=5, scaleing=1, base_scaleing=0.8), critdmg=Stat(base=45, scaleing=5, base_scaleing=1), stamina=Stat(base=57, scaleing=3, base_scaleing=5), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Necromancer(name=None, level=80, health=Stat(base=500, scaleing=180, base_scaleing=15), mana=Stat(base=40, scaleing=20, base_scaleing=1), attack=Stat(base=200, scaleing=35, base_scaleing=7), defence=Stat(base=450, scaleing=150, base_scaleing=12), speed=Stat(base=99, scaleing=1.15, base_scaleing=0.3), critrate=Stat(base=5, scaleing=0, base_scaleing=0.215), critdmg=Stat(base=37.5, scaleing=2.5, base_scaleing=0.5), stamina=Stat(base=57, scaleing=3, base_scaleing=2.5), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
 
 classes = [Blightbringer, Necromancer, Psion, Templar]

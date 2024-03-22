@@ -1,0 +1,83 @@
+
+LEVEL - 1
+
+Psion:
+HP: 630
+STM: 160
+ATK: 300
+DEF: 1300
+SPD: 105
+CRIT Rate: 8.0%
+CRIT DMG: 50.0%
+
+Templar:
+HP: 900
+STM: 100
+ATK: 320
+DEF: 280
+SPD: 95
+CRIT Rate: 15.0%
+CRIT DMG: 50.0%
+
+Mage:
+HP: 650
+STM: 118
+MP: 100
+ATK: 320
+DEF: 450
+SPD: 90
+CRIT Rate: 10.0%
+CRIT DMG: 50.0%
+
+Necromancer:
+HP: 680
+STM: 60
+MP: 60
+ATK: 235
+DEF: 600
+SPD: 100
+CRIT Rate: 50.%
+CRIT DMG: 40.0%
+
+
+//////////////////
+
+LEVEL - 80
+
+Psion:
+HP: 4947
+STM: 583
+ATK: 1992
+DEF: 5239
+SPD: 160
+CRIT Rate: 50.0%
+CRIT DMG: 132.2%
+
+Templar:
+HP: 7000
+STM: 512
+ATK: 2080
+DEF: 2813
+SPD: 137
+CRIT Rate: 70.4%
+CRIT DMG: 118.3%
+
+Mage:
+HP: 5481
+STM: 408
+MP: 1070
+ATK: 2358
+DEF: 3895
+SPD: 118
+CRIT Rate: 40.0%
+CRIT DMG: 173.6%
+
+Necromancer:
+HP: 5076
+STM: 311
+MP: 495
+ATK: 1412
+DEF: 4223
+SPD: 144
+CRIT Rate: 22.9%
+CRIT DMG: 124.1%

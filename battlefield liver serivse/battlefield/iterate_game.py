@@ -10,6 +10,7 @@ import battlefield.mobs as mobs
 import battlefield.world as world
 import copy
 import random
+import math
 
 class Game:
     """
@@ -87,7 +88,7 @@ class Game:
         output: list[str] = []
         output.extend([f"You leveled up!"])
 
-        if self.level in [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120]:
+        if self.level == ( math.floor(self.level / 10) * 10 ) + 10:
             for stat in self.stat:
                 stat = self.stat[stat]
                 stat.upgrade_count += self.stat_max_upgrades_per_level_iteration
@@ -311,9 +312,9 @@ class Game:
         state = player.states[-1]
         cmd = str(cmd).lower()
 
-        if cmd == 'hacc':
+        if cmd == 'l1':
             player.level += 1
-        elif cmd == 'hacc10':
+        elif cmd == 'l10':
             player.level += 10
 
         else:        
