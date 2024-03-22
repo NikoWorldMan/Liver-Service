@@ -4,6 +4,10 @@ theme:
   name: material
   features:
     - content.code.copy
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    
 
 
   markdown_extensions:
