@@ -2,8 +2,6 @@ site_name: (-Battlefield by liver service-)
 
 theme:
   name: material
-  nav:
-    dev: index.md
   features:
     - content.code.copy
     - navigation.tabs
