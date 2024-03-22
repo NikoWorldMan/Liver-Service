@@ -3,8 +3,9 @@ site_url: https://exampleName.com/
 nav:
 - Dev:
   - index.md
-  - Page 1: Battlefield manual.md
-  
+- Page 1: Battlefield manual.md
+- Page 2: Battlefield webpage.md
+
 
 theme:
   name: material
