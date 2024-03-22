@@ -34,31 +34,7 @@
     color: wheat;
   }
   
-  .statusbox{
-  grid-column: 3;
-  grid-row: 3/5 ;
-  border: rgb(73, 182, 182);
-  border-style: double;
-  color: wheat;
-  margin-left: -25em;
-  }
-  
-  .stats{
-  text-align: left;
-  font-size: large;
-  padding-left: 0.5em;
-  }
-  
-  .chatbox {
-  grid-column: 3;
-  grid-row: 5/9 ;
-  border: rgb(73, 182, 182);
-  border-style: double;
-  color: wheat;
-  margin-left: -25em;
-  margin-bottom: 1.3em;
-  }
-  
+
           
   @keyframes flicker {
       0% {
@@ -278,14 +254,20 @@
   .pfp-box{
     border-style: double;
     color: rgb(73, 182, 182);
+    grid-row: 1 ;
+    grid-column: 1;
   }
   
   .statusbox{
+    grid-row: 2;
+    grid-column: 1;
     border-style: double;
     color: rgb(73, 182, 182);
   }
   
   .chatbox{
+    grid-row: 3;
+    grid-column: 1;
     border-style: double;
     color: rgb(73, 182, 182);
   }
