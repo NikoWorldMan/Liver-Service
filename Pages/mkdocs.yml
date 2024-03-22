@@ -2,8 +2,6 @@ site_name: (-Battlefield by liver service-)
 
 theme:
   name: material
-  Dev: index.md
-  Page 1: Battlefield manual.md
   features:
     - content.code.copy
     - navigation.tabs
