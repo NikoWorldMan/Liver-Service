@@ -1,4 +1,4 @@
-# Velkommen til Battlefields pages  
+# Home  
 
 Dette er pages siden til Battlefields  
 
