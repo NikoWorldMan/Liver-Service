@@ -45,7 +45,7 @@ class Account:
 
             self.name = name.upper()
             self.player.name = self.name
-            output.extend([f'Hello, {name}!'])
+            output.extend([f'Welcome to battlefields, {name}!', ''])
         else:
             self.state = States.NAME
 
@@ -106,3 +106,4 @@ class Global:
 
         Global.accounts.append(new_account)
         print(f"Created Account with UID: {uid}")
+    

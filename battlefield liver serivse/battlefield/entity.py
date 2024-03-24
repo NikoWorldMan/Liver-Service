@@ -25,6 +25,7 @@ class Stat:
     upgrade_count: int = 4
 
 
+
 class Attack:
     SINGLE = "Single Target"
     AREA = "Single and Adjacent Target"
@@ -83,15 +84,15 @@ class Entity: # Default attributes all entities possess
     def set_base_stats(self):
 
         for i in self.stat:
-            stat = self.stat[i]
+            stat: Stat = self.stat[i]
 
             stat.stat = stat.base + stat.scaleing * (self.level / (self.level ** 0.33)) + stat.base_scaleing * (self.level - 1)
-            stat.stat += stat.extra
+            stat.stat += stat.extra * stat.upgrade_count
 
         if Stats.CRITRATE in self.stat:
             if self.stat[Stats.CRITRATE].stat > 100:
+                self.stat[Stats.CRITDMG].stat += (self.stat[Stats.CRITRATE].stat - 100) * 0.8
                 self.stat[Stats.CRITRATE].stat = 100
-                self.stat[Stats.CRITDMG].stat += (self.stat[Stats.CRITRATE].stat - 100) * 1.8
 
     def get_true_stats(self):
         mod_stat = self.stats.copy()
@@ -120,7 +121,6 @@ class Entity: # Default attributes all entities possess
         if attacker.level > self.level:                                                   
             levelDiff = attacker.level - self.level
         return 1-((1 + defence) / (defence + 500 + (2 ** level_dif) + 66 * level_dif ))
-    
 
 
     def change_health(self, amount):

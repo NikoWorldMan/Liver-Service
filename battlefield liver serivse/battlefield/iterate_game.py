@@ -8,6 +8,7 @@ from battlefield.entity import Stat
 import battlefield.shop as shop
 import battlefield.mobs as mobs
 import battlefield.world as world
+#from battlefield.player import Player
 import copy
 import random
 import math
@@ -74,7 +75,7 @@ class Game:
         SHOP = 3
         INVENTORY = 4
         FIGHT = 5
-        BATTLE = 6
+
         BATTLEING = 7
         LEVEL_UP = 8
         DUNGEON = 10
@@ -84,20 +85,24 @@ class Game:
         Game.uid +=1
         return Game.uid
     
-    def level_up(self):
+    def level_up_iterate(self):
         output: list[str] = []
-        output.extend([f"You leveled up!"])
 
-        if self.level == ( math.floor(self.level / 10) * 10 ) + 10:
-            for stat in self.stat:
-                stat = self.stat[stat]
-                stat.upgrade_count += self.stat_max_upgrades_per_level_iteration
+        if self.level < self.maxlv:
+            self.level_up()
 
-        self.states.append()
+            output.extend([f'Choose an extra stat to upgrade:', ''])
+            num = 0
 
+            for i in self.upgrading_stats:
+                num += 1
+                output.extend([f'{str(num)}. {i}'])
+        else:
+            while self.states[-1] == Game.State.LEVEL_UP:
+                self.states.pop(-1)
+            output.extend(Game.state_info(self, []))
 
-        return output
-
+        return output + ['']
 
 
     def battle_iterate(self):
@@ -118,8 +123,6 @@ class Game:
             output.extend(battle.team_2_info())
             output.extend([f'- VS -'])
             output.extend(battle.team_1_info())
-
-
 
         output.extend(Game.state_info(self, []))
         return output
@@ -177,7 +180,7 @@ class Game:
         for i in items:
             output.extend([i])
 
-        output.extend(['', f'what would you like to buy? Exit (x)'])
+        output.extend(['', f'You have {self.currency} diamonds', f'What would you like to buy? Exit (x)'])
 
         return output
 
@@ -185,8 +188,9 @@ class Game:
         output: list[str] = []
         output.extend(self.list_stats())
 
-        output.extend(Game.state_info(self, []))
+        self.gain_xp(self.maxlv*1.5)
 
+        output.extend(Game.state_info(self, []))
         return output
 
     def fight_iterate(self) -> list[str]:
@@ -307,6 +311,34 @@ class Game:
 
         return output
 
+
+    def level_up_state(self, cmd) -> list[str]:
+        output: list[str] = []
+
+        count: int = 0
+        num: list = []    
+        for i in self.upgrading_stats:
+            count +=1
+            num.append(str(count))
+
+        if cmd in num:
+            stat = self.upgrading_stats[int(cmd) - 1]
+            s = self.stat[stat]
+
+            s.extra += s.upgrade_mult
+
+            self.level += 1
+            self.states.pop(-1)
+
+            self.upgrading_stats.clear()
+            output.extend(Game.state_info(self, [f'{stat} increased...']))
+        else:
+            output.extend(Game.state_info(self, ['Please enter a valid option...']))
+
+
+        return output
+
+
     def iterate(player, cmd) -> list[str]:
         output: list[str] = []
         state = player.states[-1]
@@ -330,9 +362,11 @@ class Game:
                 output.extend(Game.fight_state(player, cmd))
             elif state == Game.State.BATTLEING:
                 output.extend(Game.battle_state(player, cmd))
+            elif state == Game.State.LEVEL_UP:
+                output.extend(Game.level_up_state(player, cmd))
             else:
                 #self.states.append(Game.State.IDLE)
-                output += [f'{cmd} what? how did you get here.']
+                output += [f'{cmd} Current state not defined']
         
         return output
     
@@ -352,6 +386,8 @@ class Game:
         elif state == Game.State.SHOP:
             output.extend(Game.shop_iterate(self))
             self.states.pop(-1)
+        elif state == Game.State.LEVEL_UP:
+            output.extend(Game.level_up_iterate(self))
 
         output.extend(current_state_leave_message)
         return output

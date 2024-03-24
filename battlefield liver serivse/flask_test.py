@@ -89,6 +89,10 @@ def base_post():
 
             if not user.player == None:
                 game_output.extend(account.Account.set_name(user, input))
+
+            if not user.player == None and not user.name == None:
+                game_output.extend(iterate_game.Game.state_info(user.player, []))
+
         else:
             game_output.extend(iterate_game.Game.iterate(the_player, input))
 
