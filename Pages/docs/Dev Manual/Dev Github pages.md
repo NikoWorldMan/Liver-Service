@@ -2,7 +2,6 @@
 
 -  
 
-
 WIP
 ```markdown
 (Mine egne notater om github pages.)
