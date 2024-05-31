@@ -37,11 +37,12 @@ if __name__ =="__main__":
     p_1 = p.clone()
     p_2 = p.clone()
 
-    p_1.location[Location.X] = 0
-    p_1.location[Location.Y] = 0
+    p_1.location[Location.X] = 3632
+    p_1.location[Location.Y] = 12354
     
-    p_2.location[Location.X] = 0
-    p_2.location[Location.Y] = 0
+    p_2.location[Location.X] = 6626
+    p_2.location[Location.Y] = 15266
 
-
-    print("Player1 is (", p_1.distance(p_2),") tiles away from Player2")
+    print()
+    print(f"Player1 is {p_1.distance(p_2)}m away from Player2")
+    print()

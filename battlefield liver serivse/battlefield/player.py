@@ -15,8 +15,9 @@ from battlefield.entity import Stats
 from battlefield.entity import Stat as EntityStat
 from battlefield.iterate_game import Game as Game
 import math
+from dataclasses import dataclass
 
-
+@dataclass
 class Stat(EntityStat):
     upgrade_mult: int = 1
 
@@ -53,7 +54,7 @@ class Player(entity.Entity):
         if self.level % 10 == 0:
             for stat in self.stat:
                 stat = self.stat[stat]
-                stat.upgrade_count += self.stat_max_upgrades_per_level_iteration
+                stat.upgrade_count = self.stat_max_upgrades_per_level_iteration
 
         if len(self.upgrading_stats) < 1:
             upgrading_stats = []
@@ -129,13 +130,6 @@ class Player(entity.Entity):
                 return
 
         self.inv.append(item.clone())
-
-    def initiate_battle(self, allies, opponents):
-        pass
-
-    def shop(self, shop):
-        pass
-
    
 
 class Magic(Player):
@@ -188,19 +182,19 @@ class Blightbringer(Magic):
 
 class SetClasses:
      def mage() -> list[str]:
-        new_player = Blightbringer(name=None, level=1, health=Stat(base=450, scaleing=200, base_scaleing=16, upgrade_count=70), mana=Stat(base=50, scaleing=50, base_scaleing=1, upgrade_count=33.4375), attack=Stat(base=250, scaleing=70, base_scaleing=10, upgrade_count=20), defence=Stat(base=310, scaleing=140, base_scaleing=12, upgrade_count=45), speed=Stat(base=89, scaleing=1.2, base_scaleing=0.08, upgrade_count=0.9), critrate=Stat(base=9, scaleing=1, base_scaleing=0.1538, upgrade_count=0.8), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=1, upgrade_count=2.5), stamina=Stat(base=115, scaleing=3, base_scaleing=3, upgrade_count=6), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Blightbringer(name=None, level=1, health=Stat(base=450, scaleing=200, base_scaleing=16, upgrade_mult=70), mana=Stat(base=50, scaleing=50, base_scaleing=1, upgrade_mult=33.4375), attack=Stat(base=250, scaleing=70, base_scaleing=10, upgrade_mult=20), defence=Stat(base=310, scaleing=140, base_scaleing=12, upgrade_mult=45), speed=Stat(base=89, scaleing=1.2, base_scaleing=0.08, upgrade_mult=0.9), critrate=Stat(base=9, scaleing=1, base_scaleing=0.1538, upgrade_mult=0.8), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=1, upgrade_mult=2.5), stamina=Stat(base=115, scaleing=3, base_scaleing=3, upgrade_mult=6), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def templar() -> list[str]:
-        new_player = Templar(name=None, level=1, health=Stat(base=650, scaleing=250, base_scaleing=20.77, upgrade_count=100), attack=Stat(base=270, scaleing=50, base_scaleing=11, upgrade_count=25), defence=Stat(base=200, scaleing=80, base_scaleing=14, upgrade_count=30), speed=Stat(base=94, scaleing=1.5, base_scaleing=0.19, upgrade_count=0.92), critrate=Stat(base=13, scaleing=2, base_scaleing=0.25, upgrade_count=0.5), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=0.3, upgrade_count=3), stamina=Stat(base=99, scaleing=1, base_scaleing=5, upgrade_count=7), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Templar(name=None, level=1, health=Stat(base=650, scaleing=250, base_scaleing=20.77, upgrade_mult=100), attack=Stat(base=270, scaleing=50, base_scaleing=11, upgrade_mult=25), defence=Stat(base=200, scaleing=80, base_scaleing=14, upgrade_mult=30), speed=Stat(base=94, scaleing=1.5, base_scaleing=0.19, upgrade_mult=0.92), critrate=Stat(base=13, scaleing=2, base_scaleing=0.25, upgrade_mult=0.5), critdmg=Stat(base=47.5, scaleing=2.5, base_scaleing=0.3, upgrade_mult=3), stamina=Stat(base=99, scaleing=1, base_scaleing=5, upgrade_mult=7), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def psion() -> list[str]:
-        new_player = Psion(name=None, level=1, health=Stat(base=450, scaleing=180, base_scaleing=14, upgrade_count=60), attack=Stat(base=245, scaleing=55, base_scaleing=9, upgrade_count=16), defence=Stat(base=1150, scaleing=150, base_scaleing=16, upgrade_count=65), speed=Stat(base=103, scaleing=2, base_scaleing=0.25, upgrade_count=1.1), critrate=Stat(base=5.8, scaleing=2.2, base_scaleing=0.0354, upgrade_count=1), critdmg=Stat(base=46.5, scaleing=3.5, base_scaleing=0.25, upgrade_count=2), stamina=Stat(base=154, scaleing=6, base_scaleing=4, upgrade_count=9), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Psion(name=None, level=1, health=Stat(base=450, scaleing=180, base_scaleing=14, upgrade_mult=60), attack=Stat(base=245, scaleing=55, base_scaleing=9, upgrade_mult=16), defence=Stat(base=1150, scaleing=150, base_scaleing=16, upgrade_mult=65), speed=Stat(base=103, scaleing=2, base_scaleing=0.25, upgrade_mult=1.1), critrate=Stat(base=5.8, scaleing=2.2, base_scaleing=0.0354, upgrade_mult=1), critdmg=Stat(base=46.5, scaleing=3.5, base_scaleing=0.25, upgrade_mult=2), stamina=Stat(base=154, scaleing=6, base_scaleing=4, upgrade_mult=9), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
      
      def necromancer() -> list[str]:
-        new_player = Necromancer(name=None, level=1, health=Stat(base=500, scaleing=180, base_scaleing=15, upgrade_count=80), mana=Stat(base=40, scaleing=20, base_scaleing=1, upgrade_count=16), attack=Stat(base=200, scaleing=35, base_scaleing=7, upgrade_count=12), defence=Stat(base=450, scaleing=150, base_scaleing=12, upgrade_count=50), speed=Stat(base=99, scaleing=1.15, base_scaleing=0.3, upgrade_count=1), critrate=Stat(base=5, scaleing=0, base_scaleing=0.215, upgrade_count=1.2), critdmg=Stat(base=37.5, scaleing=2.5, base_scaleing=0.5, upgrade_count=2), stamina=Stat(base=57, scaleing=3, base_scaleing=2.5, upgrade_count=4), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
+        new_player = Necromancer(name=None, level=1, health=Stat(base=500, scaleing=180, base_scaleing=15, ), mana=Stat(base=40, scaleing=20, base_scaleing=1, upgrade_mult=16), attack=Stat(base=200, scaleing=35, base_scaleing=7, upgrade_mult=12), defence=Stat(base=450, scaleing=150, base_scaleing=12, upgrade_mult=50), speed=Stat(base=99, scaleing=1.15, base_scaleing=0.3, upgrade_mult=1), critrate=Stat(base=5, scaleing=0, base_scaleing=0.215, upgrade_mult=1.2), critdmg=Stat(base=37.5, scaleing=2.5, base_scaleing=0.5, upgrade_mult=2), stamina=Stat(base=57, scaleing=3, base_scaleing=2.5, upgrade_mult=4), item_space= 20, weapon_space= 5, currency= 100, xp=0, xpmax=100)
         return new_player
 
 classes = [Blightbringer, Necromancer, Psion, Templar]

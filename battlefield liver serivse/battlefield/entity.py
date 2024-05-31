@@ -87,7 +87,7 @@ class Entity: # Default attributes all entities possess
             stat: Stat = self.stat[i]
 
             stat.stat = stat.base + stat.scaleing * (self.level / (self.level ** 0.33)) + stat.base_scaleing * (self.level - 1)
-            stat.stat += stat.extra * stat.upgrade_count
+            stat.stat += stat.extra
 
         if Stats.CRITRATE in self.stat:
             if self.stat[Stats.CRITRATE].stat > 100:
@@ -113,7 +113,7 @@ class Entity: # Default attributes all entities possess
     def crit_hit(self):
         return True if self.stat[Stats.CRITRATE].stat > random.randrange(0, 100) else False
     def crit_dmg(self):
-        return ( self.stat[Stats.CRITDMG].stat / 100 )
+        return ( self.stat[Stats.CRITDMG].stat * 0.01 )
     
     def damage_reduction(self, attacker, def_ignore: float) -> float:
         defence = self.stat[Stats.DEFENCE].stat - self.stat[Stats.DEFENCE].stat * def_ignore

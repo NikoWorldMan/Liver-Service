@@ -11,7 +11,7 @@ from battlefield.entity import Stat
 from flask import Flask, render_template, request, session, redirect, url_for
 app = Flask(__name__)
 app.secret_key = " 'lag en enkel app' :)Åæ "
-app.permanent_session_lifetime = timedelta(hours=32)
+app.permanent_session_lifetime = timedelta(hours=32, seconds=1)
 
 
 #
@@ -125,6 +125,3 @@ def update_chat():
 if __name__=='__main__': 
    app.debug = True
    app.run()
-
-
-

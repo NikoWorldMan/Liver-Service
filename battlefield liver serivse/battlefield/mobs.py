@@ -59,5 +59,5 @@ class Wizard(mob):
 
     def attack_options(self, team):
 
-            self.attack(random.choice(team), 1, 0),
+        self.attack(random.choice(team), 1, 0)
 

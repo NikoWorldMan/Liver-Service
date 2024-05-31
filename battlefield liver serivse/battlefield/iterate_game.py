@@ -67,6 +67,19 @@ class Game:
                 output.extend(i.display_health())
             return output + ['']
         
+        def team_info(self, team_1, team_2, battle) -> list[str]:
+
+            output: list = []
+            if self in team_1:
+                output.extend(battle.team_1_info())
+                output.extend([f'- VS -', ''])
+                output.extend(battle.team_2_info())
+            else:
+                output.extend(battle.team_2_info())
+                output.extend([f'- VS -'])
+                output.extend(battle.team_1_info())
+
+            return output
 
     class State:
         PAUSE = 0
@@ -115,14 +128,7 @@ class Game:
         self.fight_id = battle.id
         Game.battles.append(battle)
 
-        if self in battle.team_1:
-            output.extend(battle.team_1_info())
-            output.extend([f'- VS -', ''])
-            output.extend(battle.team_2_info())
-        else:
-            output.extend(battle.team_2_info())
-            output.extend([f'- VS -'])
-            output.extend(battle.team_1_info())
+        output.extend(Game.Fight.team_info(self, battle.team_1, battle.team_2, battle))
 
         output.extend(Game.state_info(self, []))
         return output
@@ -227,7 +233,7 @@ class Game:
             self.states.pop(-1) # Goes back to the previous state
             output.extend(Game.state_info(self, [f'You left the shop...']))
         else:
-            output.extend(Game.state_info(self, ['', f'Please enter a vaild option']))
+            output.extend(Game.state_info(self, ['', f'Please enter a valid option...']))
 
         return output
 
@@ -304,8 +310,12 @@ class Game:
     def battle_state(self, cmd) -> list[str]:
         output: list[str] = []
 
-        if cmd == '':
+        if cmd == 'a':
             pass
+            # Iterate attack state    
+
+        elif cmd == 'i':
+            output += Game.inventory_iterate(self)
         else:
             output.extend(Game.state_info(self, ['', f'Please enter a valid option']))
 
@@ -326,6 +336,7 @@ class Game:
             s = self.stat[stat]
 
             s.extra += s.upgrade_mult
+            s.upgrade_count -=1
 
             self.level += 1
             self.states.pop(-1)
@@ -334,7 +345,6 @@ class Game:
             output.extend(Game.state_info(self, [f'{stat} increased...']))
         else:
             output.extend(Game.state_info(self, ['Please enter a valid option...']))
-
 
         return output
 
@@ -379,7 +389,7 @@ class Game:
         elif state == Game.State.DUNGEON:
             output.extend([f'Please select dungeon type:' f'Random Dungeon (R) | CO-OP Dungeon (M) | Exit (X)'])
         elif state == Game.State.BATTLEING:
-            output.extend([f'What to you want to do now?', f'Attack (A) | Inventory (I) | '])
+            output.extend([f'What to you want to do now?', f'Attack (A) | Inventory (I) | ', ''])
         elif state == Game.State.INVENTORY:
             output.extend(Game.inventory_iterate(self))
             self.states.pop(-1)
@@ -398,3 +408,4 @@ if __name__ =='__main__':
 
     while True:
         print(Game.iterate('player', input("Command?")))
+        
